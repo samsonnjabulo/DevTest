@@ -1,0 +1,2 @@
+C:\Reference Projects\Dev Assessment\DevAssessment.Application\DevAssessmentApplication\DevAssessmentApplication\obj\Debug\DevAssessmentApplication.csproj.CoreCompileInputs.cache
+C:\Reference Projects\Dev Assessment\DevAssessment.Application\DevAssessmentApplication\DevAssessmentApplication\obj\Debug\DevAssessmentApplication.csprojResolveAssemblyReference.cache

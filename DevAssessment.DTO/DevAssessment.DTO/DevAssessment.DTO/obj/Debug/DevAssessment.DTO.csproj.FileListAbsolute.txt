@@ -1,0 +1,5 @@
+C:\Reference Projects\Dev Assessment\DevAssessment.DTO\DevAssessment.DTO\DevAssessment.DTO\bin\Debug\DevAssessment.DTO.dll
+C:\Reference Projects\Dev Assessment\DevAssessment.DTO\DevAssessment.DTO\DevAssessment.DTO\bin\Debug\DevAssessment.DTO.pdb
+C:\Reference Projects\Dev Assessment\DevAssessment.DTO\DevAssessment.DTO\DevAssessment.DTO\obj\Debug\DevAssessment.DTO.csproj.CoreCompileInputs.cache
+C:\Reference Projects\Dev Assessment\DevAssessment.DTO\DevAssessment.DTO\DevAssessment.DTO\obj\Debug\DevAssessment.DTO.dll
+C:\Reference Projects\Dev Assessment\DevAssessment.DTO\DevAssessment.DTO\DevAssessment.DTO\obj\Debug\DevAssessment.DTO.pdb

@@ -1,0 +1,8 @@
+C:\Reference Projects\Dev Assessment\DevAssessment.EntityFramework\bin\Debug\DevAssessment.EntityFramework.dll.config
+C:\Reference Projects\Dev Assessment\DevAssessment.EntityFramework\bin\Debug\DevAssessment.EntityFramework.dll
+C:\Reference Projects\Dev Assessment\DevAssessment.EntityFramework\bin\Debug\DevAssessment.EntityFramework.pdb
+C:\Reference Projects\Dev Assessment\DevAssessment.EntityFramework\bin\Debug\Newtonsoft.Json.dll
+C:\Reference Projects\Dev Assessment\DevAssessment.EntityFramework\obj\Debug\DevAssessment.EntityFramework.csprojResolveAssemblyReference.cache
+C:\Reference Projects\Dev Assessment\DevAssessment.EntityFramework\obj\Debug\DevAssessment.EntityFramework.csproj.CoreCompileInputs.cache
+C:\Reference Projects\Dev Assessment\DevAssessment.EntityFramework\obj\Debug\DevAssessment.EntityFramework.dll
+C:\Reference Projects\Dev Assessment\DevAssessment.EntityFramework\obj\Debug\DevAssessment.EntityFramework.pdb

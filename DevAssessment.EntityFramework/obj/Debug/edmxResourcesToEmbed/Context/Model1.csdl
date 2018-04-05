@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DevAssessmentDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="ContactPreference">
+    <Key>
+      <PropertyRef Name="ContactPreference1" />
+    </Key>
+    <Property Name="ContactPreference1" Type="Int32" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Students" Relationship="Self.FK_Student_ContactPreference" FromRole="ContactPreference" ToRole="Student" />
+  </EntityType>
+  <EntityType Name="Department">
+    <Key>
+      <PropertyRef Name="DepartmentID" />
+    </Key>
+    <Property Name="DepartmentID" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Students" Relationship="DevAssessmentDBModel.FK_Student_Department" FromRole="Department" ToRole="Student" />
+  </EntityType>
+  <EntityType Name="Gender">
+    <Key>
+      <PropertyRef Name="GenderID" />
+    </Key>
+    <Property Name="GenderID" Type="Int32" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="Students" Relationship="DevAssessmentDBModel.FK_Student_Gender" FromRole="Gender" ToRole="Student" />
+  </EntityType>
+  <EntityType Name="Student">
+    <Key>
+      <PropertyRef Name="IDNumber" />
+    </Key>
+    <Property Name="IDNumber" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FullName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Surname" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="GenderID" Type="Int32" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="ContactPreference" Type="Int32" Nullable="false" />
+    <Property Name="PhotoPath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="ContactPreference1" Relationship="Self.FK_Student_ContactPreference" FromRole="Student" ToRole="ContactPreference" />
+    <Property Name="DepartmentID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Department" Relationship="DevAssessmentDBModel.FK_Student_Department" FromRole="Student" ToRole="Department" />
+    <NavigationProperty Name="Gender" Relationship="DevAssessmentDBModel.FK_Student_Gender" FromRole="Student" ToRole="Gender" />
+  </EntityType>
+  <Association Name="FK_Student_ContactPreference">
+    <End Role="ContactPreference" Type="Self.ContactPreference" Multiplicity="1" />
+    <End Role="Student" Type="Self.Student" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ContactPreference">
+        <PropertyRef Name="ContactPreference1" />
+      </Principal>
+      <Dependent Role="Student">
+        <PropertyRef Name="ContactPreference" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DevAssessmentDBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="ContactPreferences" EntityType="Self.ContactPreference" />
+    <EntitySet Name="Departments" EntityType="Self.Department" />
+    <EntitySet Name="Genders" EntityType="Self.Gender" />
+    <EntitySet Name="Students" EntityType="Self.Student" />
+    <AssociationSet Name="FK_Student_ContactPreference" Association="Self.FK_Student_ContactPreference">
+      <End Role="ContactPreference" EntitySet="ContactPreferences" />
+      <End Role="Student" EntitySet="Students" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Student_Department" Association="DevAssessmentDBModel.FK_Student_Department">
+      <End Role="Department" EntitySet="Departments" />
+      <End Role="Student" EntitySet="Students" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Student_Gender" Association="DevAssessmentDBModel.FK_Student_Gender">
+      <End Role="Gender" EntitySet="Genders" />
+      <End Role="Student" EntitySet="Students" />
+    </AssociationSet>
+    <EntitySet Name="sysdiagrams" EntityType="DevAssessmentDBModel.sysdiagram" />
+  </EntityContainer>
+  <Association Name="FK_Student_Department">
+    <End Type="DevAssessmentDBModel.Department" Role="Department" Multiplicity="1" />
+    <End Type="DevAssessmentDBModel.Student" Role="Student" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Department">
+        <PropertyRef Name="DepartmentID" />
+      </Principal>
+      <Dependent Role="Student">
+        <PropertyRef Name="DepartmentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Student_Gender">
+    <End Type="DevAssessmentDBModel.Gender" Role="Gender" Multiplicity="1" />
+    <End Type="DevAssessmentDBModel.Student" Role="Student" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Gender">
+        <PropertyRef Name="GenderID" />
+      </Principal>
+      <Dependent Role="Student">
+        <PropertyRef Name="GenderID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+</Schema>

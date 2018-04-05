@@ -1,0 +1,3195 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Luminous.DebtorsFinance.EntityFramework.EntityFramework.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Account">
+    <Key>
+      <PropertyRef Name="AccountID" />
+    </Key>
+    <Property Name="AccountID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AccountTypeID" Type="int" Nullable="false" />
+    <Property Name="BusinessID" Type="int" />
+    <Property Name="BusinessCategoryID" Type="int" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="AutoProcess" Type="bit" Nullable="false" />
+    <Property Name="HolderName" Type="nvarchar" MaxLength="50" />
+    <Property Name="Number" Type="nvarchar" MaxLength="50" />
+    <Property Name="BranchCode" Type="nvarchar" MaxLength="50" />
+    <Property Name="BranchName" Type="nvarchar" MaxLength="50" />
+    <Property Name="Institution" Type="nvarchar" MaxLength="50" />
+    <Property Name="Active" Type="bit" />
+  </EntityType>
+  <EntityType Name="AccountType">
+    <Key>
+      <PropertyRef Name="AccountTypeID" />
+    </Key>
+    <Property Name="AccountTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="255" />
+    <Property Name="AccountTypeCode" Type="nvarchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="AddressType">
+    <Key>
+      <PropertyRef Name="AddressTypeID" />
+    </Key>
+    <Property Name="AddressTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AddressTypeName" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Business">
+    <Key>
+      <PropertyRef Name="BusinessID" />
+    </Key>
+    <Property Name="BusinessID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="100" />
+    <Property Name="TradingAs" Type="nvarchar" MaxLength="100" />
+    <Property Name="RegistrationNumber" Type="nvarchar" MaxLength="50" />
+    <Property Name="VATRegistration" Type="nvarchar" MaxLength="20" />
+    <Property Name="FinancialYearEndDate" Type="datetime" />
+    <Property Name="GroupID" Type="int" />
+    <Property Name="PhysicalAddressLine1" Type="nvarchar" MaxLength="100" />
+    <Property Name="PhysicalAddressLine2" Type="nvarchar" MaxLength="100" />
+    <Property Name="PhysicalAddressLine3" Type="nvarchar" MaxLength="100" />
+    <Property Name="PhysicalAddressLine4" Type="nvarchar" MaxLength="100" />
+    <Property Name="PhysicalAddressPostalCode" Type="nvarchar" MaxLength="10" />
+    <Property Name="PostalAddressLine1" Type="nvarchar" MaxLength="100" />
+    <Property Name="PostalAddressLine2" Type="nvarchar" MaxLength="100" />
+    <Property Name="PostalAddressLine3" Type="nvarchar" MaxLength="100" />
+    <Property Name="PostalAddressLine4" Type="nvarchar" MaxLength="100" />
+    <Property Name="PostalAddressPostalCode" Type="nvarchar" MaxLength="10" />
+    <Property Name="Contact" Type="nvarchar" MaxLength="100" />
+    <Property Name="EmailAddress" Type="nvarchar" MaxLength="100" />
+    <Property Name="Tel" Type="nvarchar" MaxLength="20" />
+    <Property Name="Fax" Type="nvarchar" MaxLength="20" />
+    <Property Name="CurrencyID" Type="int" />
+    <Property Name="DateCreated" Type="datetime" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'DF_New.dbo.BusinessApplication' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="BusinessApplication">
+    <Key>
+      <PropertyRef Name="BusinessID" />
+      <PropertyRef Name="ApplicationId" />
+    </Key>
+    <Property Name="BusinessID" Type="int" Nullable="false" />
+    <Property Name="ApplicationId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="BusinessCategory">
+    <Key>
+      <PropertyRef Name="BusinessCategoryID" />
+    </Key>
+    <Property Name="BusinessCategoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BusinessID" Type="int" />
+    <Property Name="ReferenceCategoryID" Type="int" />
+    <Property Name="CategoryTypeID" Type="int" Nullable="false" />
+    <Property Name="ParentID" Type="int" />
+    <Property Name="SubNumber" Type="int" />
+    <Property Name="Name" Type="nvarchar" MaxLength="100" />
+    <Property Name="Active" Type="bit" />
+    <Property Name="GroupTemplateID" Type="int" />
+    <Property Name="UploadCode" Type="nvarchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="BusinessDataVaultShare">
+    <Key>
+      <PropertyRef Name="FolderID" />
+    </Key>
+    <Property Name="FolderID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BusinessID" Type="int" Nullable="false" />
+    <Property Name="DocumentTypeID" Type="int" Nullable="false" />
+    <Property Name="ShareType" Type="int" Nullable="false" />
+    <Property Name="FolderType" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="100" />
+    <Property Name="UserID" Type="int" Nullable="false" />
+    <Property Name="IsPersonal" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="BusinessFile">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="BusinessID" Type="int" Nullable="false" />
+    <Property Name="FileID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="BusinessFinancialYear">
+    <Key>
+      <PropertyRef Name="BusinessFinancialYearID" />
+    </Key>
+    <Property Name="BusinessFinancialYearID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BusinessID" Type="int" Nullable="false" />
+    <Property Name="FinancialYearOpenDate" Type="datetime" />
+    <Property Name="FinancialYearCloseDate" Type="datetime" />
+    <Property Name="Locked" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="BusinessModule">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BusinessID" Type="int" Nullable="false" />
+    <Property Name="ModuleID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="BusinessPartner">
+    <Key>
+      <PropertyRef Name="BusinessPartnerID" />
+    </Key>
+    <Property Name="BusinessPartnerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BusinessID" Type="int" Nullable="false" />
+    <Property Name="GlobalPartnerID" Type="int" />
+    <Property Name="CustomPartnerID" Type="int" />
+    <Property Name="Active" Type="bit" />
+    <Property Name="FK_PartnerGroupID" Type="int" />
+  </EntityType>
+  <EntityType Name="BusinessUser">
+    <Key>
+      <PropertyRef Name="UserID" />
+      <PropertyRef Name="BusinessID" />
+    </Key>
+    <Property Name="UserID" Type="int" Nullable="false" />
+    <Property Name="BusinessID" Type="int" Nullable="false" />
+    <Property Name="Report" Type="bit" />
+  </EntityType>
+  <EntityType Name="CategoryType">
+    <Key>
+      <PropertyRef Name="CategoryTypeID" />
+    </Key>
+    <Property Name="CategoryTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="VatCategory" Type="bit" Nullable="false" />
+    <Property Name="CategoryTypeCode" Type="nvarchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="Currency">
+    <Key>
+      <PropertyRef Name="CurrencyID" />
+    </Key>
+    <Property Name="CurrencyID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Currency" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="CurrencySymbol" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="CorBank" Type="nvarchar" MaxLength="50" />
+    <Property Name="CorSwift" Type="nvarchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="CustomPartner">
+    <Key>
+      <PropertyRef Name="CustomPartnerID" />
+    </Key>
+    <Property Name="CustomPartnerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PartnerTypeID" Type="int" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="VATRegistration" Type="nvarchar" MaxLength="20" />
+    <Property Name="VATVendor" Type="bit" />
+    <Property Name="TradingName" Type="nvarchar" MaxLength="100" />
+    <Property Name="PartnerCode" Type="nvarchar" MaxLength="20" />
+    <Property Name="PayReference" Type="nvarchar" MaxLength="50" />
+    <Property Name="PayDays" Type="int" />
+    <Property Name="SettlementDiscount" Type="money" />
+    <Property Name="OverDueDays" Type="int" />
+    <Property Name="CreditLimit" Type="money" />
+    <Property Name="OverdueInterest" Type="money" />
+    <Property Name="TermsOfSale" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="DataVaultAudit">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="BusinessId" Type="int" Nullable="false" />
+    <Property Name="AuditedDate" Type="datetime" Nullable="false" />
+    <Property Name="ActionId" Type="int" Nullable="false" />
+    <Property Name="FolderId" Type="int" />
+    <Property Name="FileId" Type="uniqueidentifier" />
+    <Property Name="OldValue" Type="nvarchar" MaxLength="100" />
+    <Property Name="NewValue" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="DataVaultAuditActions">
+    <Key>
+      <PropertyRef Name="ActionId" />
+    </Key>
+    <Property Name="ActionId" Type="int" Nullable="false" />
+    <Property Name="ActionName" Type="nvarchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DataVaultFileShare">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BusinessShareId" Type="int" Nullable="false" />
+    <Property Name="FileId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Active" Type="bit" Nullable="false" />
+    <Property Name="ShareDate" Type="datetime" Nullable="false" />
+    <Property Name="UnshareDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="DataVaultFolderShare">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="BusinessId" Type="int" Nullable="false" />
+    <Property Name="FolderId" Type="int" Nullable="false" />
+    <Property Name="Active" Type="bit" Nullable="false" />
+    <Property Name="ShareDate" Type="datetime" Nullable="false" />
+    <Property Name="UnshareDate" Type="datetime" />
+    <Property Name="OwnerUserID" Type="int" />
+  </EntityType>
+  <EntityType Name="DocumentDetails">
+    <Key>
+      <PropertyRef Name="DocumentDetailID" />
+    </Key>
+    <Property Name="DocumentDetailID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DocumentID" Type="int" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="255" />
+    <Property Name="CategoryID" Type="int" />
+    <Property Name="Quantity" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="UnitPrice" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Amount" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="VatType" Type="int" />
+    <Property Name="VatAmount" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="UserID" Type="int" Nullable="false" />
+    <Property Name="DateChanged" Type="datetime" Nullable="false" />
+    <Property Name="TimeStamp" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+    <Property Name="LinePosition" Type="int" />
+  </EntityType>
+  <EntityType Name="DocumentNumbers">
+    <Key>
+      <PropertyRef Name="DocumentNumberID" />
+    </Key>
+    <Property Name="DocumentNumberID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BusinessID" Type="int" Nullable="false" />
+    <Property Name="DocumentTypeID" Type="int" Nullable="false" />
+    <Property Name="DocumentNumber" Type="int" Nullable="false" />
+    <Property Name="ReferenceTemplate" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Documents">
+    <Key>
+      <PropertyRef Name="DocumentID" />
+    </Key>
+    <Property Name="DocumentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BusinessID" Type="int" Nullable="false" />
+    <Property Name="DocumentTypeID" Type="int" Nullable="false" />
+    <Property Name="QwillTransactionID" Type="int" />
+    <Property Name="PartnerID" Type="int" Nullable="false" />
+    <Property Name="DocumentReference" Type="varchar" MaxLength="50" />
+    <Property Name="Title" Type="varchar" MaxLength="50" />
+    <Property Name="Description" Type="varchar" MaxLength="50" />
+    <Property Name="DateCreated" Type="datetime" Nullable="false" />
+    <Property Name="Amount" Type="money" Nullable="false" />
+    <Property Name="StatusID" Type="int" Nullable="false" />
+    <Property Name="UserID" Type="int" Nullable="false" />
+    <Property Name="DateChanged" Type="datetime" Nullable="false" />
+    <Property Name="TimeStamp" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+    <Property Name="DocumentNumber" Type="int" />
+    <Property Name="CurrencyID" Type="int" />
+    <Property Name="ExchangeRate" Type="money" />
+    <Property Name="AddressDetails" Type="nvarchar(max)" />
+    <Property Name="AddressCity" Type="varchar" MaxLength="50" />
+    <Property Name="AddressCountry" Type="varchar" MaxLength="50" />
+    <Property Name="AddressPostalCode" Type="varchar" MaxLength="10" />
+    <Property Name="ContactEmail" Type="varchar" MaxLength="50" />
+    <Property Name="ContactPerson" Type="varchar" MaxLength="50" />
+    <Property Name="ContactTel" Type="varchar" MaxLength="50" />
+    <Property Name="ContactFax" Type="varchar" MaxLength="50" />
+    <Property Name="PayReference" Type="varchar" MaxLength="100" />
+    <Property Name="PayByDate" Type="datetime" />
+    <Property Name="SettlementDiscount" Type="money" />
+    <Property Name="OverDueDate" Type="datetime" />
+    <Property Name="OverDueInterest" Type="money" />
+    <Property Name="SalesTerms" Type="nvarchar(max)" />
+    <Property Name="DocumentRefID" Type="int" />
+    <Property Name="DeliveryAddressDetails" Type="nvarchar" MaxLength="255" />
+    <Property Name="DeliveryAddressCity" Type="nvarchar" MaxLength="50" />
+    <Property Name="DeliveryAddressCountry" Type="nvarchar" MaxLength="50" />
+    <Property Name="DeliveryAddressPostalCode" Type="nvarchar" MaxLength="10" />
+    <Property Name="PartnerAdjustPercent" Type="money" />
+    <Property Name="IsFinalised" Type="int" />
+    <Property Name="Message" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="DocumentTypes">
+    <Key>
+      <PropertyRef Name="DocumentTypeID" />
+    </Key>
+    <Property Name="DocumentTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="50" />
+    <Property Name="Description" Type="varchar" MaxLength="50" />
+    <Property Name="DocumentRefStyle" Type="varchar" MaxLength="50" />
+    <Property Name="GenerateRef" Type="bit" />
+  </EntityType>
+  <EntityType Name="DVDocumentType">
+    <Key>
+      <PropertyRef Name="DocumentTypeID" />
+    </Key>
+    <Property Name="DocumentTypeID" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="EntryType">
+    <Key>
+      <PropertyRef Name="EntryTypeID" />
+    </Key>
+    <Property Name="EntryTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EntryTypeCode" Type="char" MaxLength="10" Nullable="false" />
+    <Property Name="EntryTypeName" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="File">
+    <Key>
+      <PropertyRef Name="File_PKID" />
+    </Key>
+    <Property Name="FileID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="BusinessID" Type="int" Nullable="false" />
+    <Property Name="UserID" Type="int" Nullable="false" />
+    <Property Name="CreateDate" Type="datetime" Nullable="false" />
+    <Property Name="UpdatedBy" Type="int" />
+    <Property Name="UpdatedDate" Type="datetime" />
+    <Property Name="ApplicationID" Type="int" />
+    <Property Name="MimeType" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="OriginalFileName" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="SizeInBytes" Type="int" Nullable="false" />
+    <Property Name="DocumentTitle" Type="nvarchar" MaxLength="500" />
+    <Property Name="FileStatusID" Type="int" />
+    <Property Name="FileTypeID" Type="int" />
+    <Property Name="Deleted" Type="bit" Nullable="false" />
+    <Property Name="File_PKID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="FileDetails">
+    <Key>
+      <PropertyRef Name="FileID" />
+    </Key>
+    <Property Name="FileID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="FileData" Type="varbinary(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="FileStatus">
+    <Key>
+      <PropertyRef Name="FileStatusId" />
+    </Key>
+    <Property Name="FileStatusId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FileStatus" Type="nvarchar" MaxLength="50" />
+    <Property Name="Active" Type="bit" />
+  </EntityType>
+  <EntityType Name="FinancialCategory">
+    <Key>
+      <PropertyRef Name="FinancialCategoryID" />
+    </Key>
+    <Property Name="FinancialCategoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="FinancialCategoryTypeID" Type="int" Nullable="false" />
+    <Property Name="LayoutCode" Type="smallint" />
+    <Property Name="SortCode" Type="smallint" />
+    <Property Name="SumTo" Type="smallint" />
+    <Property Name="ReportType" Type="nvarchar" MaxLength="10" />
+    <Property Name="FlowSign" Type="int" />
+    <Property Name="VarianceSign" Type="int" />
+    <Property Name="NamePersonal" Type="nvarchar" MaxLength="50" />
+    <Property Name="LayoutCodePersonal" Type="smallint" />
+    <Property Name="SortCodePersonal" Type="smallint" />
+    <Property Name="SumToPersonal" Type="smallint" />
+    <Property Name="FinCatShortNamePersonal" Type="nvarchar" MaxLength="50" />
+    <Property Name="DisplayOrder" Type="smallint" />
+    <Property Name="FinCatShortName" Type="nvarchar" MaxLength="50" />
+    <Property Name="BalanceSheetSign" Type="smallint" />
+    <Property Name="Grp" Type="int" />
+    <Property Name="GrpName" Type="nvarchar" MaxLength="30" />
+    <Property Name="GrpPers" Type="int" />
+    <Property Name="GrpNamePers" Type="nvarchar" MaxLength="30" />
+    <Property Name="Tags" Type="nvarchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="FinancialCategoryType">
+    <Key>
+      <PropertyRef Name="FinancialCategoryTypeID" />
+    </Key>
+    <Property Name="FinancialCategoryTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="25" />
+  </EntityType>
+  <EntityType Name="Frequency">
+    <Key>
+      <PropertyRef Name="FrequencyID" />
+    </Key>
+    <Property Name="FrequencyID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Frequency" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="FrequencyCode" Type="nvarchar" MaxLength="5" Nullable="false" />
+    <Property Name="FrequencyInterval" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Group">
+    <Key>
+      <PropertyRef Name="GroupID" />
+    </Key>
+    <Property Name="GroupID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Description" Type="nvarchar" MaxLength="50" />
+    <Property Name="IndustryID" Type="int" />
+    <Property Name="TaxYearEndMonth" Type="smallint" />
+    <Property Name="BusinessCount" Type="int" />
+  </EntityType>
+  <EntityType Name="GroupTemplate">
+    <Key>
+      <PropertyRef Name="GroupTemplateID" />
+    </Key>
+    <Property Name="GroupTemplateID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="GroupID" Type="int" Nullable="false" />
+    <Property Name="ReferenceCategoryID" Type="int" Nullable="false" />
+    <Property Name="ParentID" Type="int" />
+    <Property Name="Name" Type="varchar" MaxLength="100" />
+    <Property Name="IsBenchmark" Type="bit" />
+    <Property Name="Active" Type="bit" />
+  </EntityType>
+  <EntityType Name="HelpPage">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PageID" Type="int" />
+    <Property Name="HelpTopicID" Type="int" Nullable="false" />
+    <Property Name="OrderBy" Type="int" />
+    <Property Name="EntityTypeID" Type="int" />
+  </EntityType>
+  <EntityType Name="HelpTopic">
+    <Key>
+      <PropertyRef Name="HelpTopicID" />
+    </Key>
+    <Property Name="HelpTopicID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="HelpTopic" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="HelpTopicText" Type="nvarchar(max)" />
+    <Property Name="HelpTypeID" Type="int" />
+    <Property Name="UsageTypeID" Type="int" />
+  </EntityType>
+  <EntityType Name="HelpType">
+    <Key>
+      <PropertyRef Name="HelpTypeID" />
+    </Key>
+    <Property Name="HelpTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="HelpType" Type="nvarchar" MaxLength="50" />
+    <Property Name="SortOrder" Type="int" />
+  </EntityType>
+  <EntityType Name="Item">
+    <Key>
+      <PropertyRef Name="PK_ItemID" />
+    </Key>
+    <Property Name="PK_ItemID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FK_ItemGroupID" Type="int" Nullable="false" />
+    <Property Name="FK_ItemTypeID" Type="int" Nullable="false" />
+    <Property Name="FK_BusinessID" Type="int" Nullable="false" />
+    <Property Name="FK_SaleCategoryID" Type="int" Nullable="false" />
+    <Property Name="FK_ItemHoldingCategoryID" Type="int" Nullable="false" />
+    <Property Name="FK_COSCategoryID" Type="int" Nullable="false" />
+    <Property Name="FK_ItemAdjustmentCategoryID" Type="int" Nullable="false" />
+    <Property Name="Code" Type="nvarchar" MaxLength="50" />
+    <Property Name="FK_UnitID" Type="int" Nullable="false" />
+    <Property Name="PurchaseName" Type="nvarchar" MaxLength="255" />
+    <Property Name="SaleName" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="ValidFrom" Type="datetime" Nullable="false" />
+    <Property Name="ValidTo" Type="datetime" />
+    <Property Name="FK_PartnerID" Type="int" />
+    <Property Name="PartnerReference" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="ItemDetail">
+    <Key>
+      <PropertyRef Name="PK_ItemDetailID" />
+    </Key>
+    <Property Name="PK_ItemDetailID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FK_ItemID" Type="int" Nullable="false" />
+    <Property Name="FK_ItemDetailTypeID" Type="int" Nullable="false" />
+    <Property Name="FK_QwillTransactionDetailID" Type="int" />
+    <Property Name="FK_DocumentDetailID" Type="int" />
+    <Property Name="TransactionDate" Type="datetime" Nullable="false" />
+    <Property Name="Quantity" Type="money" Nullable="false" />
+    <Property Name="CostPrice" Type="money" />
+    <Property Name="SalePrice" Type="money" />
+    <Property Name="CountInProgress" Type="bit" />
+    <Property Name="CountStartDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="ItemDetailType">
+    <Key>
+      <PropertyRef Name="PK_ItemDetailTypeID" />
+    </Key>
+    <Property Name="PK_ItemDetailTypeID" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ItemGroup">
+    <Key>
+      <PropertyRef Name="PK_ItemGroupID" />
+    </Key>
+    <Property Name="PK_ItemGroupID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FK_BusinessID" Type="int" Nullable="false" />
+    <Property Name="FK_SaleCategoryID" Type="int" Nullable="false" />
+    <Property Name="FK_ItemHoldingCategoryID" Type="int" Nullable="false" />
+    <Property Name="FK_COSCategoryID" Type="int" Nullable="false" />
+    <Property Name="FK_ItemAdjustmentCategoryID" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="AdjustPercent" Type="money" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ItemType">
+    <Key>
+      <PropertyRef Name="PK_ItemTypeID" />
+    </Key>
+    <Property Name="PK_ItemTypeID" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="255" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ItemUnit">
+    <Key>
+      <PropertyRef Name="PK_ItemUnitID" />
+    </Key>
+    <Property Name="PK_ItemUnitID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FK_BusinessID" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Abbreviation" Type="nvarchar" MaxLength="10" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Messages">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FromUserId" Type="int" Nullable="false" />
+    <Property Name="MessageText" Type="text" />
+    <Property Name="DateSent" Type="datetime" />
+    <Property Name="ThreadID" Type="int" />
+  </EntityType>
+  <EntityType Name="MessageThread">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Subject" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="DateStarted" Type="datetime" Nullable="false" />
+    <Property Name="InitiatedByUserId" Type="int" Nullable="false" />
+    <Property Name="InitialMessage" Type="text" Nullable="false" />
+    <Property Name="BusinessID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MessageThreadLinks">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ThreadID" Type="int" Nullable="false" />
+    <Property Name="TransactionID" Type="int" />
+  </EntityType>
+  <EntityType Name="MessageThreadParticpants">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ThreadID" Type="int" Nullable="false" />
+    <Property Name="ToUserID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Module">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ModuleName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ModuleDesc" Type="nvarchar" MaxLength="200" />
+    <Property Name="ModuleCode" Type="nvarchar" MaxLength="10" />
+    <Property Name="Active" Type="bit" />
+    <Property Name="DefaultPageID" Type="int" />
+  </EntityType>
+  <EntityType Name="ModulePage">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PageID" Type="int" Nullable="false" />
+    <Property Name="ModuleID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Page">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ParentID" Type="int" />
+    <Property Name="ItemOrder" Type="int" />
+    <Property Name="Name" Type="varchar" MaxLength="50" />
+    <Property Name="Url" Type="varchar" MaxLength="50" />
+    <Property Name="Target" Type="varchar" MaxLength="50" />
+    <Property Name="CssClass" Type="varchar" MaxLength="50" />
+    <Property Name="MouseOverCssClass" Type="varchar" MaxLength="50" />
+    <Property Name="IsSpacer" Type="bit" />
+    <Property Name="SpacerMarkup" Type="varchar" MaxLength="50" />
+    <Property Name="DisplayMenu" Type="bit" />
+    <Property Name="PageType" Type="int" />
+  </EntityType>
+  <EntityType Name="PageRole">
+    <Key>
+      <PropertyRef Name="PageRoleID" />
+    </Key>
+    <Property Name="PageRoleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PageID" Type="int" Nullable="false" />
+    <Property Name="RoleID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PartnerAddress">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BusinessPartnerID" Type="int" Nullable="false" />
+    <Property Name="AddressTypeID" Type="int" Nullable="false" />
+    <Property Name="Details" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="City" Type="nvarchar" MaxLength="100" />
+    <Property Name="Country" Type="nvarchar" MaxLength="100" />
+    <Property Name="PostalCode" Type="nvarchar" MaxLength="15" />
+    <Property Name="Description" Type="nvarchar" MaxLength="50" />
+    <Property Name="IsDefault" Type="bit" />
+  </EntityType>
+  <EntityType Name="PartnerContact">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BusinessPartnerID" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="TelNumber" Type="nvarchar" MaxLength="30" />
+    <Property Name="FaxNumber" Type="nvarchar" MaxLength="30" />
+    <Property Name="Email" Type="nvarchar" MaxLength="100" />
+    <Property Name="Description" Type="nvarchar" MaxLength="50" />
+    <Property Name="IsDefault" Type="bit" />
+  </EntityType>
+  <EntityType Name="PartnerType">
+    <Key>
+      <PropertyRef Name="PartnerTypeID" />
+    </Key>
+    <Property Name="PartnerTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Description" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="QwillTransactionAllocation">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="QwillTransactionID" Type="int" Nullable="false" />
+    <Property Name="DocumentID" Type="int" Nullable="false" />
+    <Property Name="Amount" Type="money" Nullable="false" />
+    <Property Name="Discount" Type="money" />
+    <Property Name="Deleted" Type="bit" Nullable="false" />
+    <Property Name="UserID" Type="int" Nullable="false" />
+    <Property Name="DateChanged" Type="datetime" Nullable="false" />
+    <Property Name="TimeStamp" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+    <Property Name="CategoryID" Type="int" />
+    <Property Name="JournalTransactionID" Type="int" />
+    <Property Name="VATTypeID" Type="int" />
+    <Property Name="VATAmount" Type="money" />
+    <Property Name="TaxPercentage" Type="decimal" Precision="18" Scale="2" />
+  </EntityType>
+  <EntityType Name="QwillTransactionAllocationDF">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="QwillTransactionID1" Type="int" Nullable="false" />
+    <Property Name="QwillTransactionID2" Type="int" Nullable="false" />
+    <Property Name="Amount" Type="money" Nullable="false" />
+    <Property Name="Deleted" Type="bit" Nullable="false" />
+    <Property Name="UserID" Type="int" />
+    <Property Name="DateChanged" Type="datetime" Nullable="false" />
+    <Property Name="TimeStamp" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+    <Property Name="VATTypeID" Type="int" />
+    <Property Name="VATAmount" Type="money" />
+    <Property Name="TaxPercentage" Type="decimal" Precision="18" Scale="2" />
+  </EntityType>
+  <EntityType Name="QwillTransactions">
+    <Key>
+      <PropertyRef Name="QwillTransactionID" />
+    </Key>
+    <Property Name="QwillTransactionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BusinessID" Type="int" Nullable="false" />
+    <Property Name="TransactionTypeID" Type="int" />
+    <Property Name="AccountID" Type="int" />
+    <Property Name="SourceTransactionID" Type="int" />
+    <Property Name="TransactionDate" Type="smalldatetime" />
+    <Property Name="PostingDate" Type="smalldatetime" />
+    <Property Name="Description" Type="nvarchar" MaxLength="50" />
+    <Property Name="Memo" Type="nvarchar" MaxLength="50" />
+    <Property Name="Amount" Type="money" />
+    <Property Name="QwillCategory" Type="char" MaxLength="10" />
+    <Property Name="CategoryID" Type="int" />
+    <Property Name="SplitCategory" Type="bit" />
+    <Property Name="PartnerID" Type="int" />
+    <Property Name="VATIncluded" Type="bit" />
+    <Property Name="VATAmountOverride" Type="bit" />
+    <Property Name="StatusID" Type="int" />
+    <Property Name="UserID" Type="int" />
+    <Property Name="DateChanged" Type="datetime" />
+    <Property Name="TimeStamp" Type="timestamp" StoreGeneratedPattern="Computed" />
+    <Property Name="MatchingRuleID" Type="int" />
+    <Property Name="QwillTransactionRefID" Type="int" />
+  </EntityType>
+  <EntityType Name="QWillTransactionsDetail">
+    <Key>
+      <PropertyRef Name="QwillTransactionDetailID" />
+    </Key>
+    <Property Name="QwillTransactionDetailID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="QwillTransactionID" Type="int" Nullable="false" />
+    <Property Name="DRAmount" Type="money" />
+    <Property Name="CRAmount" Type="money" />
+    <Property Name="CategoryID" Type="int" />
+    <Property Name="VatTypeID" Type="int" />
+    <Property Name="UserID" Type="int" />
+    <Property Name="DateChanged" Type="datetime" />
+    <Property Name="TimeStamp" Type="timestamp" StoreGeneratedPattern="Computed" />
+    <Property Name="Description" Type="nvarchar" MaxLength="255" />
+    <Property Name="VATAmount" Type="money" />
+  </EntityType>
+  <EntityType Name="QwillTransactionsDetailTax">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="QwillTransactionDetailID" Type="int" Nullable="false" />
+    <Property Name="BaseAmount" Type="money" />
+    <Property Name="TaxTypeID" Type="int" Nullable="false" />
+    <Property Name="TaxPercentage" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="TaxAmount" Type="money" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ReferenceCategory">
+    <Key>
+      <PropertyRef Name="ReferenceCategoryID" />
+    </Key>
+    <Property Name="ReferenceCategoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Number" Type="int" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Description" Type="nvarchar" MaxLength="255" />
+    <Property Name="CategoryTypeID" Type="int" />
+    <Property Name="FinancialCategoryID" Type="int" />
+    <Property Name="AccountRelevant" Type="bit" Nullable="false" />
+    <Property Name="ManualEntries" Type="bit" Nullable="false" />
+    <Property Name="Active" Type="bit" />
+    <Property Name="CFSortCode" Type="int" />
+    <Property Name="CFSortCodePers" Type="int" />
+    <Property Name="FACategoryID" Type="int" />
+    <Property Name="FAPersonalsCatID" Type="int" />
+    <Property Name="Tags" Type="nvarchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="ReportModule">
+    <Key>
+      <PropertyRef Name="ReportModuleID" />
+    </Key>
+    <Property Name="ReportModuleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ReportID" Type="int" />
+    <Property Name="ModuleID" Type="int" />
+  </EntityType>
+  <EntityType Name="ReportRoles">
+    <Key>
+      <PropertyRef Name="ReportRoleID" />
+    </Key>
+    <Property Name="ReportRoleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ReportID" Type="int" />
+    <Property Name="RoleID" Type="int" />
+  </EntityType>
+  <EntityType Name="Reports">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ReportName" Type="varchar" MaxLength="50" />
+    <Property Name="ReportDescription" Type="varchar" MaxLength="255" />
+    <Property Name="ReportUrl" Type="varchar" MaxLength="255" />
+    <Property Name="ReportID" Type="int" />
+    <Property Name="OrderBy" Type="int" />
+    <Property Name="ReportParameterType" Type="int" />
+    <Property Name="ReportParameterFormat" Type="int" />
+  </EntityType>
+  <EntityType Name="RoleIntegration">
+    <Key>
+      <PropertyRef Name="RoleIntegrationID" />
+    </Key>
+    <Property Name="RoleIntegrationID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RoleID" Type="int" Nullable="false" />
+    <Property Name="IntegrationRoleID" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Roles">
+    <Key>
+      <PropertyRef Name="RoleID" />
+    </Key>
+    <Property Name="RoleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RoleName" Type="nvarchar" MaxLength="50" />
+    <Property Name="OrderBy" Type="int" />
+    <Property Name="RoleTypeID" Type="int" />
+    <Property Name="DefaultPageID" Type="int" />
+  </EntityType>
+  <EntityType Name="RoleType">
+    <Key>
+      <PropertyRef Name="RoleTypeID" />
+    </Key>
+    <Property Name="RoleTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RoleType" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="RoleTypeCode" Type="nvarchar" MaxLength="5" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Status">
+    <Key>
+      <PropertyRef Name="StatusID" />
+    </Key>
+    <Property Name="StatusID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nchar" MaxLength="25" />
+    <Property Name="StatusTypeID" Type="int" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="TransactionType">
+    <Key>
+      <PropertyRef Name="TransactionTypeID" />
+    </Key>
+    <Property Name="TransactionTypeID" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="100" />
+    <Property Name="Description" Type="nvarchar" MaxLength="255" />
+    <Property Name="AutoProcess" Type="bit" Nullable="false" />
+    <Property Name="Inward" Type="bit" Nullable="false" />
+    <Property Name="EntryTypeID" Type="int" />
+    <Property Name="DrCategorySelect" Type="nvarchar" MaxLength="255" />
+    <Property Name="CrCategorySelect" Type="nvarchar" MaxLength="255" />
+    <Property Name="PartnerSelect" Type="nvarchar" MaxLength="255" />
+    <Property Name="StatusID" Type="int" />
+    <Property Name="Note" Type="nvarchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="UploadApplication">
+    <Key>
+      <PropertyRef Name="UploadApplicationID" />
+    </Key>
+    <Property Name="UploadApplicationID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'DF_New.dbo.UploadApplicationCode' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="UploadApplicationCode">
+    <Key>
+      <PropertyRef Name="UploadApplicationCodeID" />
+      <PropertyRef Name="UploadApplicationID" />
+      <PropertyRef Name="FinancialCategoryID" />
+      <PropertyRef Name="CodeFrom" />
+      <PropertyRef Name="CodeTo" />
+    </Key>
+    <Property Name="UploadApplicationCodeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UploadApplicationID" Type="int" Nullable="false" />
+    <Property Name="FinancialCategoryID" Type="int" Nullable="false" />
+    <Property Name="CodeFrom" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="CodeTo" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="UploadFinCat" Type="nvarchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="UploadApplicationType">
+    <Key>
+      <PropertyRef Name="UploadApplicationTypeID" />
+    </Key>
+    <Property Name="UploadApplicationTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UploadApplicationID" Type="int" Nullable="false" />
+    <Property Name="UploadTypeID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UploadFrequency">
+    <Key>
+      <PropertyRef Name="UploadFrequencyID" />
+    </Key>
+    <Property Name="UploadFrequencyID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UploadTypeID" Type="int" Nullable="false" />
+    <Property Name="FrequencyID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UploadSchedule">
+    <Key>
+      <PropertyRef Name="UploadScheduleID" />
+    </Key>
+    <Property Name="UploadScheduleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BusinessID" Type="int" Nullable="false" />
+    <Property Name="UploadTypeID" Type="int" Nullable="false" />
+    <Property Name="FrequencyID" Type="int" Nullable="false" />
+    <Property Name="StartDate" Type="datetime" Nullable="false" />
+    <Property Name="EndDate" Type="datetime" />
+    <Property Name="NextDueDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UploadStaging">
+    <Key>
+      <PropertyRef Name="UploadStagingID" />
+    </Key>
+    <Property Name="UploadStagingID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BusinessID" Type="int" Nullable="false" />
+    <Property Name="ApplicationID" Type="int" Nullable="false" />
+    <Property Name="UploadTypeID" Type="int" Nullable="false" />
+    <Property Name="StartDate" Type="datetime" />
+    <Property Name="EndDate" Type="datetime" Nullable="false" />
+    <Property Name="UploadDate" Type="datetime" Nullable="false" />
+    <Property Name="DFSequenceNumber" Type="nvarchar" MaxLength="50" />
+    <Property Name="InvoiceValue" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="CollectionValue" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="CreditNoteValue" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="PlusAdjustmentValue" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="MinusAdjustmentValue" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="DiscountValue" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="OverPaymentValue" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="ClosingBalance" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="CashDifference" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="OfferValue" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="MaxPrimaryKey" Type="int" />
+    <Property Name="MinTransactionDate" Type="datetime" />
+    <Property Name="UploadStatusID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UploadStagingAllocations">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UploadStagingID" Type="int" Nullable="false" />
+    <Property Name="TransactionType" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="PrimaryKey" Type="nvarchar" MaxLength="25" Nullable="false" />
+    <Property Name="MatchedPK" Type="nvarchar" MaxLength="25" Nullable="false" />
+    <Property Name="MatchedDate" Type="datetime" Nullable="false" />
+    <Property Name="MatchedAmount" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="MatchedTaxAmount" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UploadStagingLedgerMaster">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BusinessID" Type="int" Nullable="false" />
+    <Property Name="FinCatNumber" Type="int" Nullable="false" />
+    <Property Name="FinCatName" Type="nvarchar" MaxLength="300" />
+    <Property Name="CategoryNumber" Type="int" Nullable="false" />
+    <Property Name="CategoryName" Type="nvarchar" MaxLength="300" />
+    <Property Name="DR" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="CR" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="RecordDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UploadStagingPartners">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UploadStagingID" Type="int" Nullable="false" />
+    <Property Name="PartnerType" Type="nvarchar" MaxLength="15" />
+    <Property Name="PartnerCode" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="PartnerName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="TradingName" Type="nvarchar" MaxLength="100" />
+    <Property Name="VATRegistration" Type="nvarchar" MaxLength="20" />
+    <Property Name="AddressLine1" Type="nvarchar(max)" />
+    <Property Name="AddressLine2" Type="nvarchar(max)" />
+    <Property Name="AddressLine3" Type="nvarchar(max)" />
+    <Property Name="AddressLine4" Type="nvarchar(max)" />
+    <Property Name="AddressLine5" Type="nvarchar(max)" />
+    <Property Name="ContactName" Type="nvarchar" MaxLength="100" />
+    <Property Name="TelNumber" Type="nvarchar" MaxLength="30" />
+    <Property Name="FaxNumber" Type="nvarchar" MaxLength="30" />
+    <Property Name="CellNumber" Type="nvarchar" MaxLength="30" />
+    <Property Name="Email" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="UploadStagingPPOpenItem">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UploadStagingID" Type="int" Nullable="false" />
+    <Property Name="CSCode" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="EntryType" Type="int" Nullable="false" />
+    <Property Name="Ref" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="MatchRef" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="dDate" Type="datetime" Nullable="false" />
+    <Property Name="Amount" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="TaxAmt" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UploadStagingTransactions">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UploadStagingID" Type="int" Nullable="false" />
+    <Property Name="TransactionType" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="TransactionDate" Type="datetime" Nullable="false" />
+    <Property Name="PartnerCode" Type="nvarchar" MaxLength="15" />
+    <Property Name="Reference" Type="nvarchar" MaxLength="25" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="AmountIncl" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="TaxAmount" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="PrimaryKey" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="OriginalTransactionType" Type="nvarchar" MaxLength="10" />
+    <Property Name="EvoAllocs" Type="nvarchar(max)" />
+    <Property Name="CB" Type="bit" Nullable="false" />
+    <Property Name="ContraDesc" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="UploadStagingTransactionType">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ApplicationID" Type="int" Nullable="false" />
+    <Property Name="TransactionType" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="TransactionTypeID" Type="int" Nullable="false" />
+    <Property Name="DRRefCatID" Type="int" />
+    <Property Name="CRRefCatID" Type="int" />
+    <Property Name="AltRefCatCB" Type="int" />
+    <Property Name="AltRefCatContra" Type="int" />
+    <Property Name="DefaultPositive" Type="bit" />
+    <Property Name="DRVATIncl" Type="bit" />
+    <Property Name="CRVATIncl" Type="bit" />
+  </EntityType>
+  <EntityType Name="UploadStatus">
+    <Key>
+      <PropertyRef Name="UploadStatusID" />
+    </Key>
+    <Property Name="UploadStatusID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UploadStatus" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="UploadStatusCode" Type="nvarchar" MaxLength="5" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UploadType">
+    <Key>
+      <PropertyRef Name="UploadTypeID" />
+    </Key>
+    <Property Name="UploadTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UploadType" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserAudit">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserID" Type="int" />
+    <Property Name="AuditDate" Type="datetime" />
+    <Property Name="ModuleID" Type="int" />
+    <Property Name="Action" Type="int" />
+    <Property Name="Identifier" Type="nvarchar" MaxLength="50" />
+    <Property Name="PropertyName" Type="nvarchar" MaxLength="50" />
+    <Property Name="Type" Type="nvarchar" MaxLength="50" />
+    <Property Name="Value" Type="nvarchar(max)" />
+    <Property Name="ExtraData" Type="xml" />
+  </EntityType>
+  <EntityType Name="UserAuthentication">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserID" Type="int" Nullable="false" />
+    <Property Name="Code" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="OTP" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ExpiryDate" Type="datetime" Nullable="false" />
+    <Property Name="LastResetDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserManagement">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="Surname" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="EmailAddress" Type="nvarchar" MaxLength="255" />
+    <Property Name="Username" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="Active" Type="bit" Nullable="false" />
+    <Property Name="Attempts" Type="int" />
+    <Property Name="LockedOut" Type="bit" />
+    <Property Name="UserTypeID" Type="int" />
+    <Property Name="ResetGuid" Type="nvarchar" MaxLength="100" />
+    <Property Name="ResetDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="UserRoles">
+    <Key>
+      <PropertyRef Name="UserRoleID" />
+    </Key>
+    <Property Name="UserRoleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserID" Type="int" Nullable="false" />
+    <Property Name="RoleID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserType">
+    <Key>
+      <PropertyRef Name="UserTypeID" />
+    </Key>
+    <Property Name="UserTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserType" Type="nvarchar" MaxLength="50" />
+    <Property Name="UserTypeCode" Type="nvarchar" MaxLength="5" />
+  </EntityType>
+  <EntityType Name="VatType">
+    <Key>
+      <PropertyRef Name="VatTypeID" />
+    </Key>
+    <Property Name="VatTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Percentage" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Name" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="Inclusive" Type="bit" />
+    <Property Name="VATTypeCode" Type="nvarchar" MaxLength="5" />
+    <Property Name="TaxGroupId" Type="int" />
+  </EntityType>
+  <Association Name="FK__Business__Curren__00FFE85F">
+    <End Role="Currency" Type="Self.Currency" Multiplicity="0..1" />
+    <End Role="Business" Type="Self.Business" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Currency">
+        <PropertyRef Name="CurrencyID" />
+      </Principal>
+      <Dependent Role="Business">
+        <PropertyRef Name="CurrencyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Business__Curren__79C8DAEB">
+    <End Role="Currency" Type="Self.Currency" Multiplicity="0..1" />
+    <End Role="Business" Type="Self.Business" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Currency">
+        <PropertyRef Name="CurrencyID" />
+      </Principal>
+      <Dependent Role="Business">
+        <PropertyRef Name="CurrencyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Account_AccountType">
+    <End Role="AccountType" Type="Self.AccountType" Multiplicity="1" />
+    <End Role="Account" Type="Self.Account" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AccountType">
+        <PropertyRef Name="AccountTypeID" />
+      </Principal>
+      <Dependent Role="Account">
+        <PropertyRef Name="AccountTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Account_Business">
+    <End Role="Business" Type="Self.Business" Multiplicity="0..1" />
+    <End Role="Account" Type="Self.Account" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Business">
+        <PropertyRef Name="BusinessID" />
+      </Principal>
+      <Dependent Role="Account">
+        <PropertyRef Name="BusinessID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Account_BusinessCategory">
+    <End Role="BusinessCategory" Type="Self.BusinessCategory" Multiplicity="0..1" />
+    <End Role="Account" Type="Self.Account" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BusinessCategory">
+        <PropertyRef Name="BusinessCategoryID" />
+      </Principal>
+      <Dependent Role="Account">
+        <PropertyRef Name="BusinessCategoryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Business_Group">
+    <End Role="Group" Type="Self.Group" Multiplicity="0..1" />
+    <End Role="Business" Type="Self.Business" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Group">
+        <PropertyRef Name="GroupID" />
+      </Principal>
+      <Dependent Role="Business">
+        <PropertyRef Name="GroupID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BusinessApplication_Business">
+    <End Role="Business" Type="Self.Business" Multiplicity="1" />
+    <End Role="BusinessApplication" Type="Self.BusinessApplication" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Business">
+        <PropertyRef Name="BusinessID" />
+      </Principal>
+      <Dependent Role="BusinessApplication">
+        <PropertyRef Name="BusinessID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BusinessCategory_Business">
+    <End Role="Business" Type="Self.Business" Multiplicity="0..1" />
+    <End Role="BusinessCategory" Type="Self.BusinessCategory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Business">
+        <PropertyRef Name="BusinessID" />
+      </Principal>
+      <Dependent Role="BusinessCategory">
+        <PropertyRef Name="BusinessID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BusinessCategory_CategoryType">
+    <End Role="CategoryType" Type="Self.CategoryType" Multiplicity="1" />
+    <End Role="BusinessCategory" Type="Self.BusinessCategory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CategoryType">
+        <PropertyRef Name="CategoryTypeID" />
+      </Principal>
+      <Dependent Role="BusinessCategory">
+        <PropertyRef Name="CategoryTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BusinessCategory_ReferenceCategory">
+    <End Role="ReferenceCategory" Type="Self.ReferenceCategory" Multiplicity="0..1" />
+    <End Role="BusinessCategory" Type="Self.BusinessCategory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ReferenceCategory">
+        <PropertyRef Name="ReferenceCategoryID" />
+      </Principal>
+      <Dependent Role="BusinessCategory">
+        <PropertyRef Name="ReferenceCategoryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BusinessDataVaultShare_DVDocumentType">
+    <End Role="DVDocumentType" Type="Self.DVDocumentType" Multiplicity="1" />
+    <End Role="BusinessDataVaultShare" Type="Self.BusinessDataVaultShare" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DVDocumentType">
+        <PropertyRef Name="DocumentTypeID" />
+      </Principal>
+      <Dependent Role="BusinessDataVaultShare">
+        <PropertyRef Name="DocumentTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BusinessDataVaultShare_UserManagement">
+    <End Role="UserManagement" Type="Self.UserManagement" Multiplicity="1" />
+    <End Role="BusinessDataVaultShare" Type="Self.BusinessDataVaultShare" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserManagement">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="BusinessDataVaultShare">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BusinessFile_Business">
+    <End Role="Business" Type="Self.Business" Multiplicity="1" />
+    <End Role="BusinessFile" Type="Self.BusinessFile" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Business">
+        <PropertyRef Name="BusinessID" />
+      </Principal>
+      <Dependent Role="BusinessFile">
+        <PropertyRef Name="BusinessID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BusinessFile_FileDetails">
+    <End Role="FileDetails" Type="Self.FileDetails" Multiplicity="1" />
+    <End Role="BusinessFile" Type="Self.BusinessFile" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FileDetails">
+        <PropertyRef Name="FileID" />
+      </Principal>
+      <Dependent Role="BusinessFile">
+        <PropertyRef Name="FileID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BusinessFinancialYear_Business">
+    <End Role="Business" Type="Self.Business" Multiplicity="1" />
+    <End Role="BusinessFinancialYear" Type="Self.BusinessFinancialYear" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Business">
+        <PropertyRef Name="BusinessID" />
+      </Principal>
+      <Dependent Role="BusinessFinancialYear">
+        <PropertyRef Name="BusinessID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BusinessModule_Business">
+    <End Role="Business" Type="Self.Business" Multiplicity="1" />
+    <End Role="BusinessModule" Type="Self.BusinessModule" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Business">
+        <PropertyRef Name="BusinessID" />
+      </Principal>
+      <Dependent Role="BusinessModule">
+        <PropertyRef Name="BusinessID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BusinessModule_Module">
+    <End Role="Module" Type="Self.Module" Multiplicity="1" />
+    <End Role="BusinessModule" Type="Self.BusinessModule" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Module">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="BusinessModule">
+        <PropertyRef Name="ModuleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BusinessPartner_Business">
+    <End Role="Business" Type="Self.Business" Multiplicity="1" />
+    <End Role="BusinessPartner" Type="Self.BusinessPartner" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Business">
+        <PropertyRef Name="BusinessID" />
+      </Principal>
+      <Dependent Role="BusinessPartner">
+        <PropertyRef Name="BusinessID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BusinessPartner_CustomPartner">
+    <End Role="CustomPartner" Type="Self.CustomPartner" Multiplicity="0..1" />
+    <End Role="BusinessPartner" Type="Self.BusinessPartner" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CustomPartner">
+        <PropertyRef Name="CustomPartnerID" />
+      </Principal>
+      <Dependent Role="BusinessPartner">
+        <PropertyRef Name="CustomPartnerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BusinessUser_Business">
+    <End Role="Business" Type="Self.Business" Multiplicity="1" />
+    <End Role="BusinessUser" Type="Self.BusinessUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Business">
+        <PropertyRef Name="BusinessID" />
+      </Principal>
+      <Dependent Role="BusinessUser">
+        <PropertyRef Name="BusinessID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BusinessUser_UserManagement">
+    <End Role="UserManagement" Type="Self.UserManagement" Multiplicity="1" />
+    <End Role="BusinessUser" Type="Self.BusinessUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserManagement">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="BusinessUser">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CustomPartner_PartnerType">
+    <End Role="PartnerType" Type="Self.PartnerType" Multiplicity="0..1" />
+    <End Role="CustomPartner" Type="Self.CustomPartner" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PartnerType">
+        <PropertyRef Name="PartnerTypeID" />
+      </Principal>
+      <Dependent Role="CustomPartner">
+        <PropertyRef Name="PartnerTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DataVaultAudit_Business">
+    <End Role="Business" Type="Self.Business" Multiplicity="1" />
+    <End Role="DataVaultAudit" Type="Self.DataVaultAudit" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Business">
+        <PropertyRef Name="BusinessID" />
+      </Principal>
+      <Dependent Role="DataVaultAudit">
+        <PropertyRef Name="BusinessId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DataVaultAudit_BusinessDataVaultShare">
+    <End Role="BusinessDataVaultShare" Type="Self.BusinessDataVaultShare" Multiplicity="0..1" />
+    <End Role="DataVaultAudit" Type="Self.DataVaultAudit" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BusinessDataVaultShare">
+        <PropertyRef Name="FolderID" />
+      </Principal>
+      <Dependent Role="DataVaultAudit">
+        <PropertyRef Name="FolderId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DataVaultAudit_DataVaultAuditActions">
+    <End Role="DataVaultAuditActions" Type="Self.DataVaultAuditActions" Multiplicity="1" />
+    <End Role="DataVaultAudit" Type="Self.DataVaultAudit" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DataVaultAuditActions">
+        <PropertyRef Name="ActionId" />
+      </Principal>
+      <Dependent Role="DataVaultAudit">
+        <PropertyRef Name="ActionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DataVaultAudit_UserManagement">
+    <End Role="UserManagement" Type="Self.UserManagement" Multiplicity="1" />
+    <End Role="DataVaultAudit" Type="Self.DataVaultAudit" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserManagement">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="DataVaultAudit">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DataVaultFileShare_DataVaultFolderShare">
+    <End Role="DataVaultFolderShare" Type="Self.DataVaultFolderShare" Multiplicity="1" />
+    <End Role="DataVaultFileShare" Type="Self.DataVaultFileShare" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DataVaultFolderShare">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="DataVaultFileShare">
+        <PropertyRef Name="BusinessShareId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DataVaultFileShare_DataVaultFolderShare1">
+    <End Role="DataVaultFolderShare" Type="Self.DataVaultFolderShare" Multiplicity="1" />
+    <End Role="DataVaultFileShare" Type="Self.DataVaultFileShare" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DataVaultFolderShare">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="DataVaultFileShare">
+        <PropertyRef Name="BusinessShareId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DataVaultFileShare_FileDetails">
+    <End Role="FileDetails" Type="Self.FileDetails" Multiplicity="1" />
+    <End Role="DataVaultFileShare" Type="Self.DataVaultFileShare" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FileDetails">
+        <PropertyRef Name="FileID" />
+      </Principal>
+      <Dependent Role="DataVaultFileShare">
+        <PropertyRef Name="FileId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DataVaultFolderShare_Business">
+    <End Role="Business" Type="Self.Business" Multiplicity="1" />
+    <End Role="DataVaultFolderShare" Type="Self.DataVaultFolderShare" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Business">
+        <PropertyRef Name="BusinessID" />
+      </Principal>
+      <Dependent Role="DataVaultFolderShare">
+        <PropertyRef Name="BusinessId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DataVaultFolderShare_BusinessDataVaultShare">
+    <End Role="BusinessDataVaultShare" Type="Self.BusinessDataVaultShare" Multiplicity="1" />
+    <End Role="DataVaultFolderShare" Type="Self.DataVaultFolderShare" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BusinessDataVaultShare">
+        <PropertyRef Name="FolderID" />
+      </Principal>
+      <Dependent Role="DataVaultFolderShare">
+        <PropertyRef Name="FolderId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DataVaultFolderShare_UserManagement">
+    <End Role="UserManagement" Type="Self.UserManagement" Multiplicity="1" />
+    <End Role="DataVaultFolderShare" Type="Self.DataVaultFolderShare" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserManagement">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="DataVaultFolderShare">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DataVaultFolderShareOwner_UserManagement">
+    <End Role="UserManagement" Type="Self.UserManagement" Multiplicity="0..1" />
+    <End Role="DataVaultFolderShare" Type="Self.DataVaultFolderShare" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserManagement">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="DataVaultFolderShare">
+        <PropertyRef Name="OwnerUserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DocumentDetails_Documents">
+    <End Role="Documents" Type="Self.Documents" Multiplicity="1" />
+    <End Role="DocumentDetails" Type="Self.DocumentDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Documents">
+        <PropertyRef Name="DocumentID" />
+      </Principal>
+      <Dependent Role="DocumentDetails">
+        <PropertyRef Name="DocumentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DocumentNumbers_Business">
+    <End Role="Business" Type="Self.Business" Multiplicity="1" />
+    <End Role="DocumentNumbers" Type="Self.DocumentNumbers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Business">
+        <PropertyRef Name="BusinessID" />
+      </Principal>
+      <Dependent Role="DocumentNumbers">
+        <PropertyRef Name="BusinessID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DocumentNumbers_DocumentTypes">
+    <End Role="DocumentTypes" Type="Self.DocumentTypes" Multiplicity="1" />
+    <End Role="DocumentNumbers" Type="Self.DocumentNumbers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DocumentTypes">
+        <PropertyRef Name="DocumentTypeID" />
+      </Principal>
+      <Dependent Role="DocumentNumbers">
+        <PropertyRef Name="DocumentTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Documents_Business">
+    <End Role="Business" Type="Self.Business" Multiplicity="1" />
+    <End Role="Documents" Type="Self.Documents" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Business">
+        <PropertyRef Name="BusinessID" />
+      </Principal>
+      <Dependent Role="Documents">
+        <PropertyRef Name="BusinessID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Documents_BusinessPartner">
+    <End Role="BusinessPartner" Type="Self.BusinessPartner" Multiplicity="1" />
+    <End Role="Documents" Type="Self.Documents" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BusinessPartner">
+        <PropertyRef Name="BusinessPartnerID" />
+      </Principal>
+      <Dependent Role="Documents">
+        <PropertyRef Name="PartnerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Documents_DocumentTypes">
+    <End Role="DocumentTypes" Type="Self.DocumentTypes" Multiplicity="1" />
+    <End Role="Documents" Type="Self.Documents" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DocumentTypes">
+        <PropertyRef Name="DocumentTypeID" />
+      </Principal>
+      <Dependent Role="Documents">
+        <PropertyRef Name="DocumentTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Documents_Status">
+    <End Role="Status" Type="Self.Status" Multiplicity="1" />
+    <End Role="Documents" Type="Self.Documents" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Status">
+        <PropertyRef Name="StatusID" />
+      </Principal>
+      <Dependent Role="Documents">
+        <PropertyRef Name="StatusID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_File_BusinessID">
+    <End Role="Business" Type="Self.Business" Multiplicity="1" />
+    <End Role="File" Type="Self.File" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Business">
+        <PropertyRef Name="BusinessID" />
+      </Principal>
+      <Dependent Role="File">
+        <PropertyRef Name="BusinessID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_File_FileDetails">
+    <End Role="FileDetails" Type="Self.FileDetails" Multiplicity="1" />
+    <End Role="File" Type="Self.File" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FileDetails">
+        <PropertyRef Name="FileID" />
+      </Principal>
+      <Dependent Role="File">
+        <PropertyRef Name="FileID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_File_FileStatus">
+    <End Role="FileStatus" Type="Self.FileStatus" Multiplicity="0..1" />
+    <End Role="File" Type="Self.File" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FileStatus">
+        <PropertyRef Name="FileStatusId" />
+      </Principal>
+      <Dependent Role="File">
+        <PropertyRef Name="FileStatusID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_File_User">
+    <End Role="UserManagement" Type="Self.UserManagement" Multiplicity="1" />
+    <End Role="File" Type="Self.File" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserManagement">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="File">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_File_UserManagement">
+    <End Role="UserManagement" Type="Self.UserManagement" Multiplicity="0..1" />
+    <End Role="File" Type="Self.File" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserManagement">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="File">
+        <PropertyRef Name="UpdatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FinancialCategory_FinancialCategoryType">
+    <End Role="FinancialCategoryType" Type="Self.FinancialCategoryType" Multiplicity="1" />
+    <End Role="FinancialCategory" Type="Self.FinancialCategory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FinancialCategoryType">
+        <PropertyRef Name="FinancialCategoryTypeID" />
+      </Principal>
+      <Dependent Role="FinancialCategory">
+        <PropertyRef Name="FinancialCategoryTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GroupReferenceCategory_Group">
+    <End Role="Group" Type="Self.Group" Multiplicity="1" />
+    <End Role="GroupTemplate" Type="Self.GroupTemplate" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Group">
+        <PropertyRef Name="GroupID" />
+      </Principal>
+      <Dependent Role="GroupTemplate">
+        <PropertyRef Name="GroupID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GroupTemplate_ReferenceCategory">
+    <End Role="ReferenceCategory" Type="Self.ReferenceCategory" Multiplicity="1" />
+    <End Role="GroupTemplate" Type="Self.GroupTemplate" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ReferenceCategory">
+        <PropertyRef Name="ReferenceCategoryID" />
+      </Principal>
+      <Dependent Role="GroupTemplate">
+        <PropertyRef Name="ReferenceCategoryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HelpPage_HelpTopic">
+    <End Role="HelpTopic" Type="Self.HelpTopic" Multiplicity="1" />
+    <End Role="HelpPage" Type="Self.HelpPage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HelpTopic">
+        <PropertyRef Name="HelpTopicID" />
+      </Principal>
+      <Dependent Role="HelpPage">
+        <PropertyRef Name="HelpTopicID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HelpPage_Page">
+    <End Role="Page" Type="Self.Page" Multiplicity="0..1" />
+    <End Role="HelpPage" Type="Self.HelpPage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Page">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="HelpPage">
+        <PropertyRef Name="PageID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HelpTopic_HelpType">
+    <End Role="HelpType" Type="Self.HelpType" Multiplicity="0..1" />
+    <End Role="HelpTopic" Type="Self.HelpTopic" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HelpType">
+        <PropertyRef Name="HelpTypeID" />
+      </Principal>
+      <Dependent Role="HelpTopic">
+        <PropertyRef Name="HelpTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Item_ItemGroup">
+    <End Role="ItemGroup" Type="Self.ItemGroup" Multiplicity="1" />
+    <End Role="Item" Type="Self.Item" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ItemGroup">
+        <PropertyRef Name="PK_ItemGroupID" />
+      </Principal>
+      <Dependent Role="Item">
+        <PropertyRef Name="FK_ItemGroupID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Item_ItemType">
+    <End Role="ItemType" Type="Self.ItemType" Multiplicity="1" />
+    <End Role="Item" Type="Self.Item" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ItemType">
+        <PropertyRef Name="PK_ItemTypeID" />
+      </Principal>
+      <Dependent Role="Item">
+        <PropertyRef Name="FK_ItemTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Item_ItemUnit">
+    <End Role="ItemUnit" Type="Self.ItemUnit" Multiplicity="1" />
+    <End Role="Item" Type="Self.Item" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ItemUnit">
+        <PropertyRef Name="PK_ItemUnitID" />
+      </Principal>
+      <Dependent Role="Item">
+        <PropertyRef Name="FK_UnitID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ItemAdjustmentCategory_BusinessCategory">
+    <End Role="BusinessCategory" Type="Self.BusinessCategory" Multiplicity="1" />
+    <End Role="Item" Type="Self.Item" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BusinessCategory">
+        <PropertyRef Name="BusinessCategoryID" />
+      </Principal>
+      <Dependent Role="Item">
+        <PropertyRef Name="FK_ItemAdjustmentCategoryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ItemCOSCategory_BusinessCategory">
+    <End Role="BusinessCategory" Type="Self.BusinessCategory" Multiplicity="1" />
+    <End Role="Item" Type="Self.Item" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BusinessCategory">
+        <PropertyRef Name="BusinessCategoryID" />
+      </Principal>
+      <Dependent Role="Item">
+        <PropertyRef Name="FK_COSCategoryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ItemDetail_DocumentDetails">
+    <End Role="DocumentDetails" Type="Self.DocumentDetails" Multiplicity="0..1" />
+    <End Role="ItemDetail" Type="Self.ItemDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DocumentDetails">
+        <PropertyRef Name="DocumentDetailID" />
+      </Principal>
+      <Dependent Role="ItemDetail">
+        <PropertyRef Name="FK_DocumentDetailID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ItemDetail_Item">
+    <End Role="Item" Type="Self.Item" Multiplicity="1" />
+    <End Role="ItemDetail" Type="Self.ItemDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Item">
+        <PropertyRef Name="PK_ItemID" />
+      </Principal>
+      <Dependent Role="ItemDetail">
+        <PropertyRef Name="FK_ItemID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ItemDetail_ItemDetailType">
+    <End Role="ItemDetailType" Type="Self.ItemDetailType" Multiplicity="1" />
+    <End Role="ItemDetail" Type="Self.ItemDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ItemDetailType">
+        <PropertyRef Name="PK_ItemDetailTypeID" />
+      </Principal>
+      <Dependent Role="ItemDetail">
+        <PropertyRef Name="FK_ItemDetailTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ItemDetail_QWillTransactionsDetail">
+    <End Role="QWillTransactionsDetail" Type="Self.QWillTransactionsDetail" Multiplicity="0..1" />
+    <End Role="ItemDetail" Type="Self.ItemDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="QWillTransactionsDetail">
+        <PropertyRef Name="QwillTransactionDetailID" />
+      </Principal>
+      <Dependent Role="ItemDetail">
+        <PropertyRef Name="FK_QwillTransactionDetailID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ItemGroupAdjustmentCategory_BusinessCategory">
+    <End Role="BusinessCategory" Type="Self.BusinessCategory" Multiplicity="1" />
+    <End Role="ItemGroup" Type="Self.ItemGroup" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BusinessCategory">
+        <PropertyRef Name="BusinessCategoryID" />
+      </Principal>
+      <Dependent Role="ItemGroup">
+        <PropertyRef Name="FK_ItemAdjustmentCategoryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ItemGroupCOSCategory_BusinessCategory">
+    <End Role="BusinessCategory" Type="Self.BusinessCategory" Multiplicity="1" />
+    <End Role="ItemGroup" Type="Self.ItemGroup" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BusinessCategory">
+        <PropertyRef Name="BusinessCategoryID" />
+      </Principal>
+      <Dependent Role="ItemGroup">
+        <PropertyRef Name="FK_COSCategoryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ItemGroupHoldingCategory_BusinessCategory">
+    <End Role="BusinessCategory" Type="Self.BusinessCategory" Multiplicity="1" />
+    <End Role="ItemGroup" Type="Self.ItemGroup" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BusinessCategory">
+        <PropertyRef Name="BusinessCategoryID" />
+      </Principal>
+      <Dependent Role="ItemGroup">
+        <PropertyRef Name="FK_ItemHoldingCategoryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ItemGroupSaleCategory_BusinessCategory">
+    <End Role="BusinessCategory" Type="Self.BusinessCategory" Multiplicity="1" />
+    <End Role="ItemGroup" Type="Self.ItemGroup" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BusinessCategory">
+        <PropertyRef Name="BusinessCategoryID" />
+      </Principal>
+      <Dependent Role="ItemGroup">
+        <PropertyRef Name="FK_SaleCategoryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ItemHoldingCategory_BusinessCategory">
+    <End Role="BusinessCategory" Type="Self.BusinessCategory" Multiplicity="1" />
+    <End Role="Item" Type="Self.Item" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BusinessCategory">
+        <PropertyRef Name="BusinessCategoryID" />
+      </Principal>
+      <Dependent Role="Item">
+        <PropertyRef Name="FK_ItemHoldingCategoryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ItemSaleCategory_BusinessCategory">
+    <End Role="BusinessCategory" Type="Self.BusinessCategory" Multiplicity="1" />
+    <End Role="Item" Type="Self.Item" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BusinessCategory">
+        <PropertyRef Name="BusinessCategoryID" />
+      </Principal>
+      <Dependent Role="Item">
+        <PropertyRef Name="FK_SaleCategoryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Messages_MessageThread">
+    <End Role="MessageThread" Type="Self.MessageThread" Multiplicity="0..1" />
+    <End Role="Messages" Type="Self.Messages" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MessageThread">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Messages">
+        <PropertyRef Name="ThreadID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Messages_UserManagement">
+    <End Role="UserManagement" Type="Self.UserManagement" Multiplicity="1" />
+    <End Role="Messages" Type="Self.Messages" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserManagement">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="Messages">
+        <PropertyRef Name="FromUserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MessageThread_UserManagement">
+    <End Role="UserManagement" Type="Self.UserManagement" Multiplicity="1" />
+    <End Role="MessageThread" Type="Self.MessageThread" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserManagement">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="MessageThread">
+        <PropertyRef Name="InitiatedByUserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MessageThreadLinks_MessageThread">
+    <End Role="MessageThread" Type="Self.MessageThread" Multiplicity="1" />
+    <End Role="MessageThreadLinks" Type="Self.MessageThreadLinks" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MessageThread">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="MessageThreadLinks">
+        <PropertyRef Name="ThreadID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MessageThreadParticpants_MessageThread">
+    <End Role="MessageThread" Type="Self.MessageThread" Multiplicity="1" />
+    <End Role="MessageThreadParticpants" Type="Self.MessageThreadParticpants" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MessageThread">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="MessageThreadParticpants">
+        <PropertyRef Name="ThreadID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MessageThreadParticpants_UserManagement">
+    <End Role="UserManagement" Type="Self.UserManagement" Multiplicity="1" />
+    <End Role="MessageThreadParticpants" Type="Self.MessageThreadParticpants" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserManagement">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="MessageThreadParticpants">
+        <PropertyRef Name="ToUserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ModulePage_Module">
+    <End Role="Module" Type="Self.Module" Multiplicity="1" />
+    <End Role="ModulePage" Type="Self.ModulePage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Module">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ModulePage">
+        <PropertyRef Name="ModuleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ModulePage_Page">
+    <End Role="Page" Type="Self.Page" Multiplicity="1" />
+    <End Role="ModulePage" Type="Self.ModulePage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Page">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ModulePage">
+        <PropertyRef Name="PageID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PageRole_Page">
+    <End Role="Page" Type="Self.Page" Multiplicity="1" />
+    <End Role="PageRole" Type="Self.PageRole" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Page">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="PageRole">
+        <PropertyRef Name="PageID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PageRole_Roles">
+    <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
+    <End Role="PageRole" Type="Self.PageRole" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Roles">
+        <PropertyRef Name="RoleID" />
+      </Principal>
+      <Dependent Role="PageRole">
+        <PropertyRef Name="RoleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PartnerAddress_AddressType">
+    <End Role="AddressType" Type="Self.AddressType" Multiplicity="1" />
+    <End Role="PartnerAddress" Type="Self.PartnerAddress" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AddressType">
+        <PropertyRef Name="AddressTypeID" />
+      </Principal>
+      <Dependent Role="PartnerAddress">
+        <PropertyRef Name="AddressTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PartnerAddress_BusinessPartner">
+    <End Role="BusinessPartner" Type="Self.BusinessPartner" Multiplicity="1" />
+    <End Role="PartnerAddress" Type="Self.PartnerAddress" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BusinessPartner">
+        <PropertyRef Name="BusinessPartnerID" />
+      </Principal>
+      <Dependent Role="PartnerAddress">
+        <PropertyRef Name="BusinessPartnerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PartnerContact_BusinessPartner">
+    <End Role="BusinessPartner" Type="Self.BusinessPartner" Multiplicity="1" />
+    <End Role="PartnerContact" Type="Self.PartnerContact" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BusinessPartner">
+        <PropertyRef Name="BusinessPartnerID" />
+      </Principal>
+      <Dependent Role="PartnerContact">
+        <PropertyRef Name="BusinessPartnerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_QwillTransactionAllocation_Documents">
+    <End Role="Documents" Type="Self.Documents" Multiplicity="1" />
+    <End Role="QwillTransactionAllocation" Type="Self.QwillTransactionAllocation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Documents">
+        <PropertyRef Name="DocumentID" />
+      </Principal>
+      <Dependent Role="QwillTransactionAllocation">
+        <PropertyRef Name="DocumentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_QwillTransactionAllocation_QwillTransactions1">
+    <End Role="QwillTransactions" Type="Self.QwillTransactions" Multiplicity="1" />
+    <End Role="QwillTransactionAllocationDF" Type="Self.QwillTransactionAllocationDF" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="QwillTransactions">
+        <PropertyRef Name="QwillTransactionID" />
+      </Principal>
+      <Dependent Role="QwillTransactionAllocationDF">
+        <PropertyRef Name="QwillTransactionID1" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_QwillTransactionAllocation_QwillTransactions2">
+    <End Role="QwillTransactions" Type="Self.QwillTransactions" Multiplicity="1" />
+    <End Role="QwillTransactionAllocationDF" Type="Self.QwillTransactionAllocationDF" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="QwillTransactions">
+        <PropertyRef Name="QwillTransactionID" />
+      </Principal>
+      <Dependent Role="QwillTransactionAllocationDF">
+        <PropertyRef Name="QwillTransactionID2" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_QwillTransactionAllocation_UserManagement">
+    <End Role="UserManagement" Type="Self.UserManagement" Multiplicity="1" />
+    <End Role="QwillTransactionAllocation" Type="Self.QwillTransactionAllocation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserManagement">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="QwillTransactionAllocation">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_QwillTransactions_Account">
+    <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
+    <End Role="QwillTransactions" Type="Self.QwillTransactions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="AccountID" />
+      </Principal>
+      <Dependent Role="QwillTransactions">
+        <PropertyRef Name="AccountID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_QwillTransactions_Business">
+    <End Role="Business" Type="Self.Business" Multiplicity="1" />
+    <End Role="QwillTransactions" Type="Self.QwillTransactions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Business">
+        <PropertyRef Name="BusinessID" />
+      </Principal>
+      <Dependent Role="QwillTransactions">
+        <PropertyRef Name="BusinessID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_QwillTransactions_BusinessPartner">
+    <End Role="BusinessPartner" Type="Self.BusinessPartner" Multiplicity="0..1" />
+    <End Role="QwillTransactions" Type="Self.QwillTransactions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BusinessPartner">
+        <PropertyRef Name="BusinessPartnerID" />
+      </Principal>
+      <Dependent Role="QwillTransactions">
+        <PropertyRef Name="PartnerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_QwillTransactions_Status">
+    <End Role="Status" Type="Self.Status" Multiplicity="0..1" />
+    <End Role="QwillTransactions" Type="Self.QwillTransactions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Status">
+        <PropertyRef Name="StatusID" />
+      </Principal>
+      <Dependent Role="QwillTransactions">
+        <PropertyRef Name="StatusID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_QWillTransactionsDetail_QwillTransactions">
+    <End Role="QwillTransactions" Type="Self.QwillTransactions" Multiplicity="1" />
+    <End Role="QWillTransactionsDetail" Type="Self.QWillTransactionsDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="QwillTransactions">
+        <PropertyRef Name="QwillTransactionID" />
+      </Principal>
+      <Dependent Role="QWillTransactionsDetail">
+        <PropertyRef Name="QwillTransactionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_QwillTransactionsDetailTax_QWillTransactionsDetail">
+    <End Role="QWillTransactionsDetail" Type="Self.QWillTransactionsDetail" Multiplicity="1" />
+    <End Role="QwillTransactionsDetailTax" Type="Self.QwillTransactionsDetailTax" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="QWillTransactionsDetail">
+        <PropertyRef Name="QwillTransactionDetailID" />
+      </Principal>
+      <Dependent Role="QwillTransactionsDetailTax">
+        <PropertyRef Name="QwillTransactionDetailID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_QwillTransactionsDetailTax_VatType">
+    <End Role="VatType" Type="Self.VatType" Multiplicity="1" />
+    <End Role="QwillTransactionsDetailTax" Type="Self.QwillTransactionsDetailTax" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VatType">
+        <PropertyRef Name="VatTypeID" />
+      </Principal>
+      <Dependent Role="QwillTransactionsDetailTax">
+        <PropertyRef Name="TaxTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ReferenceCategory_FinancialCategory">
+    <End Role="FinancialCategory" Type="Self.FinancialCategory" Multiplicity="0..1" />
+    <End Role="ReferenceCategory" Type="Self.ReferenceCategory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FinancialCategory">
+        <PropertyRef Name="FinancialCategoryID" />
+      </Principal>
+      <Dependent Role="ReferenceCategory">
+        <PropertyRef Name="FinancialCategoryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ReportModule_Module">
+    <End Role="Module" Type="Self.Module" Multiplicity="0..1" />
+    <End Role="ReportModule" Type="Self.ReportModule" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Module">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ReportModule">
+        <PropertyRef Name="ModuleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ReportModule_Reports">
+    <End Role="Reports" Type="Self.Reports" Multiplicity="0..1" />
+    <End Role="ReportModule" Type="Self.ReportModule" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Reports">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ReportModule">
+        <PropertyRef Name="ReportID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ReportRoles_Reports">
+    <End Role="Reports" Type="Self.Reports" Multiplicity="0..1" />
+    <End Role="ReportRoles" Type="Self.ReportRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Reports">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ReportRoles">
+        <PropertyRef Name="ReportID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ReportRoles_Roles">
+    <End Role="Roles" Type="Self.Roles" Multiplicity="0..1" />
+    <End Role="ReportRoles" Type="Self.ReportRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Roles">
+        <PropertyRef Name="RoleID" />
+      </Principal>
+      <Dependent Role="ReportRoles">
+        <PropertyRef Name="RoleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RoleIntegration_Role">
+    <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
+    <End Role="RoleIntegration" Type="Self.RoleIntegration" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Roles">
+        <PropertyRef Name="RoleID" />
+      </Principal>
+      <Dependent Role="RoleIntegration">
+        <PropertyRef Name="RoleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Roles_RoleType">
+    <End Role="RoleType" Type="Self.RoleType" Multiplicity="0..1" />
+    <End Role="Roles" Type="Self.Roles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RoleType">
+        <PropertyRef Name="RoleTypeID" />
+      </Principal>
+      <Dependent Role="Roles">
+        <PropertyRef Name="RoleTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Status_Status">
+    <End Role="Status" Type="Self.Status" Multiplicity="1" />
+    <End Role="Status1" Type="Self.Status" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Status">
+        <PropertyRef Name="StatusID" />
+      </Principal>
+      <Dependent Role="Status1">
+        <PropertyRef Name="StatusID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TransactionType_EntryType">
+    <End Role="EntryType" Type="Self.EntryType" Multiplicity="0..1" />
+    <End Role="TransactionType" Type="Self.TransactionType" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EntryType">
+        <PropertyRef Name="EntryTypeID" />
+      </Principal>
+      <Dependent Role="TransactionType">
+        <PropertyRef Name="EntryTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TransactionType_Status">
+    <End Role="Status" Type="Self.Status" Multiplicity="0..1" />
+    <End Role="TransactionType" Type="Self.TransactionType" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Status">
+        <PropertyRef Name="StatusID" />
+      </Principal>
+      <Dependent Role="TransactionType">
+        <PropertyRef Name="StatusID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UploadApplicationCode_FinancialCategory">
+    <End Role="FinancialCategory" Type="Self.FinancialCategory" Multiplicity="1" />
+    <End Role="UploadApplicationCode" Type="Self.UploadApplicationCode" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FinancialCategory">
+        <PropertyRef Name="FinancialCategoryID" />
+      </Principal>
+      <Dependent Role="UploadApplicationCode">
+        <PropertyRef Name="FinancialCategoryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UploadApplicationType_UploadApplication">
+    <End Role="UploadApplication" Type="Self.UploadApplication" Multiplicity="1" />
+    <End Role="UploadApplicationType" Type="Self.UploadApplicationType" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UploadApplication">
+        <PropertyRef Name="UploadApplicationID" />
+      </Principal>
+      <Dependent Role="UploadApplicationType">
+        <PropertyRef Name="UploadApplicationID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UploadApplicationType_UploadType">
+    <End Role="UploadType" Type="Self.UploadType" Multiplicity="1" />
+    <End Role="UploadApplicationType" Type="Self.UploadApplicationType" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UploadType">
+        <PropertyRef Name="UploadTypeID" />
+      </Principal>
+      <Dependent Role="UploadApplicationType">
+        <PropertyRef Name="UploadTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UploadFrequency_Frequency">
+    <End Role="Frequency" Type="Self.Frequency" Multiplicity="1" />
+    <End Role="UploadFrequency" Type="Self.UploadFrequency" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Frequency">
+        <PropertyRef Name="FrequencyID" />
+      </Principal>
+      <Dependent Role="UploadFrequency">
+        <PropertyRef Name="FrequencyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UploadFrequency_UploadType">
+    <End Role="UploadType" Type="Self.UploadType" Multiplicity="1" />
+    <End Role="UploadFrequency" Type="Self.UploadFrequency" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UploadType">
+        <PropertyRef Name="UploadTypeID" />
+      </Principal>
+      <Dependent Role="UploadFrequency">
+        <PropertyRef Name="UploadTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UploadSchedule_Business">
+    <End Role="Business" Type="Self.Business" Multiplicity="1" />
+    <End Role="UploadSchedule" Type="Self.UploadSchedule" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Business">
+        <PropertyRef Name="BusinessID" />
+      </Principal>
+      <Dependent Role="UploadSchedule">
+        <PropertyRef Name="BusinessID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UploadSchedule_Frequency">
+    <End Role="Frequency" Type="Self.Frequency" Multiplicity="1" />
+    <End Role="UploadSchedule" Type="Self.UploadSchedule" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Frequency">
+        <PropertyRef Name="FrequencyID" />
+      </Principal>
+      <Dependent Role="UploadSchedule">
+        <PropertyRef Name="FrequencyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UploadSchedule_UploadType">
+    <End Role="UploadType" Type="Self.UploadType" Multiplicity="1" />
+    <End Role="UploadSchedule" Type="Self.UploadSchedule" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UploadType">
+        <PropertyRef Name="UploadTypeID" />
+      </Principal>
+      <Dependent Role="UploadSchedule">
+        <PropertyRef Name="UploadTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UploadStaging_Business">
+    <End Role="Business" Type="Self.Business" Multiplicity="1" />
+    <End Role="UploadStaging" Type="Self.UploadStaging" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Business">
+        <PropertyRef Name="BusinessID" />
+      </Principal>
+      <Dependent Role="UploadStaging">
+        <PropertyRef Name="BusinessID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UploadStaging_UploadApplication">
+    <End Role="UploadApplication" Type="Self.UploadApplication" Multiplicity="1" />
+    <End Role="UploadStaging" Type="Self.UploadStaging" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UploadApplication">
+        <PropertyRef Name="UploadApplicationID" />
+      </Principal>
+      <Dependent Role="UploadStaging">
+        <PropertyRef Name="ApplicationID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UploadStaging_UploadStatus">
+    <End Role="UploadStatus" Type="Self.UploadStatus" Multiplicity="1" />
+    <End Role="UploadStaging" Type="Self.UploadStaging" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UploadStatus">
+        <PropertyRef Name="UploadStatusID" />
+      </Principal>
+      <Dependent Role="UploadStaging">
+        <PropertyRef Name="UploadStatusID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UploadStaging_UploadType">
+    <End Role="UploadType" Type="Self.UploadType" Multiplicity="1" />
+    <End Role="UploadStaging" Type="Self.UploadStaging" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UploadType">
+        <PropertyRef Name="UploadTypeID" />
+      </Principal>
+      <Dependent Role="UploadStaging">
+        <PropertyRef Name="UploadTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UploadStagingAllocations_UploadStaging">
+    <End Role="UploadStaging" Type="Self.UploadStaging" Multiplicity="1" />
+    <End Role="UploadStagingAllocations" Type="Self.UploadStagingAllocations" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UploadStaging">
+        <PropertyRef Name="UploadStagingID" />
+      </Principal>
+      <Dependent Role="UploadStagingAllocations">
+        <PropertyRef Name="UploadStagingID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UploadStagingAllocations_UploadStagingAllocations">
+    <End Role="UploadStagingAllocations" Type="Self.UploadStagingAllocations" Multiplicity="1" />
+    <End Role="UploadStagingAllocations1" Type="Self.UploadStagingAllocations" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="UploadStagingAllocations">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="UploadStagingAllocations1">
+        <PropertyRef Name="ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UploadStagingPartners_UploadStaging">
+    <End Role="UploadStaging" Type="Self.UploadStaging" Multiplicity="1" />
+    <End Role="UploadStagingPartners" Type="Self.UploadStagingPartners" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UploadStaging">
+        <PropertyRef Name="UploadStagingID" />
+      </Principal>
+      <Dependent Role="UploadStagingPartners">
+        <PropertyRef Name="UploadStagingID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UploadStagingTransactions_UploadStaging">
+    <End Role="UploadStaging" Type="Self.UploadStaging" Multiplicity="1" />
+    <End Role="UploadStagingTransactions" Type="Self.UploadStagingTransactions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UploadStaging">
+        <PropertyRef Name="UploadStagingID" />
+      </Principal>
+      <Dependent Role="UploadStagingTransactions">
+        <PropertyRef Name="UploadStagingID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UploadStagingTransactionType_TransactionType">
+    <End Role="TransactionType" Type="Self.TransactionType" Multiplicity="1" />
+    <End Role="UploadStagingTransactionType" Type="Self.UploadStagingTransactionType" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TransactionType">
+        <PropertyRef Name="TransactionTypeID" />
+      </Principal>
+      <Dependent Role="UploadStagingTransactionType">
+        <PropertyRef Name="TransactionTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UploadStagingTransactionType_UploadApplication">
+    <End Role="UploadApplication" Type="Self.UploadApplication" Multiplicity="1" />
+    <End Role="UploadStagingTransactionType" Type="Self.UploadStagingTransactionType" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UploadApplication">
+        <PropertyRef Name="UploadApplicationID" />
+      </Principal>
+      <Dependent Role="UploadStagingTransactionType">
+        <PropertyRef Name="ApplicationID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserAudit_UserManagement">
+    <End Role="UserManagement" Type="Self.UserManagement" Multiplicity="0..1" />
+    <End Role="UserAudit" Type="Self.UserAudit" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserManagement">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="UserAudit">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserAuthentication_UserManagement">
+    <End Role="UserManagement" Type="Self.UserManagement" Multiplicity="1" />
+    <End Role="UserAuthentication" Type="Self.UserAuthentication" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserManagement">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="UserAuthentication">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserManagement_UserType">
+    <End Role="UserType" Type="Self.UserType" Multiplicity="0..1" />
+    <End Role="UserManagement" Type="Self.UserManagement" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserType">
+        <PropertyRef Name="UserTypeID" />
+      </Principal>
+      <Dependent Role="UserManagement">
+        <PropertyRef Name="UserTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserRoles_Roles">
+    <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
+    <End Role="UserRoles" Type="Self.UserRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Roles">
+        <PropertyRef Name="RoleID" />
+      </Principal>
+      <Dependent Role="UserRoles">
+        <PropertyRef Name="RoleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserRoles_UserManagement">
+    <End Role="UserManagement" Type="Self.UserManagement" Multiplicity="1" />
+    <End Role="UserRoles" Type="Self.UserRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserManagement">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="UserRoles">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="spListBusinessDashboard" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="BusinessID" Type="int" Mode="In" />
+    <Parameter Name="FromDate" Type="datetime" Mode="In" />
+    <Parameter Name="ToDate" Type="datetime" Mode="In" />
+    <Parameter Name="UploadStatusID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spListPages" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserID" Type="int" Mode="In" />
+    <Parameter Name="ParentID" Type="int" Mode="In" />
+    <Parameter Name="Display" Type="bit" Mode="In" />
+  </Function>
+  <Function Name="spListPortfolioDashboard" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserID" Type="int" Mode="In" />
+    <Parameter Name="FromDate" Type="datetime" Mode="In" />
+    <Parameter Name="ToDate" Type="datetime" Mode="In" />
+    <Parameter Name="UploadStatusID" Type="int" Mode="In" />
+  </Function>
+  <EntityContainer Name="LuminousDebtorsFinanceEntityFrameworkEntityFrameworkStoreContainer">
+    <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AccountType" EntityType="Self.AccountType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AddressType" EntityType="Self.AddressType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Business" EntityType="Self.Business" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BusinessCategory" EntityType="Self.BusinessCategory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BusinessDataVaultShare" EntityType="Self.BusinessDataVaultShare" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BusinessFile" EntityType="Self.BusinessFile" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BusinessFinancialYear" EntityType="Self.BusinessFinancialYear" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BusinessModule" EntityType="Self.BusinessModule" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BusinessPartner" EntityType="Self.BusinessPartner" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BusinessUser" EntityType="Self.BusinessUser" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CategoryType" EntityType="Self.CategoryType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Currency" EntityType="Self.Currency" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CustomPartner" EntityType="Self.CustomPartner" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DataVaultAudit" EntityType="Self.DataVaultAudit" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DataVaultAuditActions" EntityType="Self.DataVaultAuditActions" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DataVaultFileShare" EntityType="Self.DataVaultFileShare" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DataVaultFolderShare" EntityType="Self.DataVaultFolderShare" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DocumentDetails" EntityType="Self.DocumentDetails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DocumentNumbers" EntityType="Self.DocumentNumbers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Documents" EntityType="Self.Documents" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DocumentTypes" EntityType="Self.DocumentTypes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DVDocumentType" EntityType="Self.DVDocumentType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EntryType" EntityType="Self.EntryType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="File" EntityType="Self.File" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FileDetails" EntityType="Self.FileDetails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FileStatus" EntityType="Self.FileStatus" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FinancialCategory" EntityType="Self.FinancialCategory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FinancialCategoryType" EntityType="Self.FinancialCategoryType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Frequency" EntityType="Self.Frequency" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Group" EntityType="Self.Group" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GroupTemplate" EntityType="Self.GroupTemplate" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="HelpPage" EntityType="Self.HelpPage" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="HelpTopic" EntityType="Self.HelpTopic" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="HelpType" EntityType="Self.HelpType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Item" EntityType="Self.Item" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ItemDetail" EntityType="Self.ItemDetail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ItemDetailType" EntityType="Self.ItemDetailType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ItemGroup" EntityType="Self.ItemGroup" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ItemType" EntityType="Self.ItemType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ItemUnit" EntityType="Self.ItemUnit" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Messages" EntityType="Self.Messages" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MessageThread" EntityType="Self.MessageThread" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MessageThreadLinks" EntityType="Self.MessageThreadLinks" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MessageThreadParticpants" EntityType="Self.MessageThreadParticpants" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Module" EntityType="Self.Module" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ModulePage" EntityType="Self.ModulePage" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Page" EntityType="Self.Page" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PageRole" EntityType="Self.PageRole" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PartnerAddress" EntityType="Self.PartnerAddress" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PartnerContact" EntityType="Self.PartnerContact" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PartnerType" EntityType="Self.PartnerType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="QwillTransactionAllocation" EntityType="Self.QwillTransactionAllocation" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="QwillTransactionAllocationDF" EntityType="Self.QwillTransactionAllocationDF" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="QwillTransactions" EntityType="Self.QwillTransactions" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="QWillTransactionsDetail" EntityType="Self.QWillTransactionsDetail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="QwillTransactionsDetailTax" EntityType="Self.QwillTransactionsDetailTax" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ReferenceCategory" EntityType="Self.ReferenceCategory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ReportModule" EntityType="Self.ReportModule" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ReportRoles" EntityType="Self.ReportRoles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Reports" EntityType="Self.Reports" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RoleIntegration" EntityType="Self.RoleIntegration" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RoleType" EntityType="Self.RoleType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Status" EntityType="Self.Status" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TransactionType" EntityType="Self.TransactionType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UploadApplication" EntityType="Self.UploadApplication" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UploadApplicationType" EntityType="Self.UploadApplicationType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UploadFrequency" EntityType="Self.UploadFrequency" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UploadSchedule" EntityType="Self.UploadSchedule" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UploadStaging" EntityType="Self.UploadStaging" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UploadStagingAllocations" EntityType="Self.UploadStagingAllocations" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UploadStagingLedgerMaster" EntityType="Self.UploadStagingLedgerMaster" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UploadStagingPartners" EntityType="Self.UploadStagingPartners" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UploadStagingPPOpenItem" EntityType="Self.UploadStagingPPOpenItem" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UploadStagingTransactions" EntityType="Self.UploadStagingTransactions" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UploadStagingTransactionType" EntityType="Self.UploadStagingTransactionType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UploadStatus" EntityType="Self.UploadStatus" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UploadType" EntityType="Self.UploadType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserAudit" EntityType="Self.UserAudit" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserAuthentication" EntityType="Self.UserAuthentication" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserManagement" EntityType="Self.UserManagement" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserRoles" EntityType="Self.UserRoles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserType" EntityType="Self.UserType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="VatType" EntityType="Self.VatType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BusinessApplication" EntityType="Self.BusinessApplication" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [BusinessApplication].[BusinessID] AS [BusinessID], 
+    [BusinessApplication].[ApplicationId] AS [ApplicationId]
+    FROM [dbo].[BusinessApplication] AS [BusinessApplication]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="UploadApplicationCode" EntityType="Self.UploadApplicationCode" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [UploadApplicationCode].[UploadApplicationCodeID] AS [UploadApplicationCodeID], 
+    [UploadApplicationCode].[UploadApplicationID] AS [UploadApplicationID], 
+    [UploadApplicationCode].[FinancialCategoryID] AS [FinancialCategoryID], 
+    [UploadApplicationCode].[CodeFrom] AS [CodeFrom], 
+    [UploadApplicationCode].[CodeTo] AS [CodeTo], 
+    [UploadApplicationCode].[UploadFinCat] AS [UploadFinCat]
+    FROM [dbo].[UploadApplicationCode] AS [UploadApplicationCode]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK__Business__Curren__00FFE85F" Association="Self.FK__Business__Curren__00FFE85F">
+      <End Role="Currency" EntitySet="Currency" />
+      <End Role="Business" EntitySet="Business" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Business__Curren__79C8DAEB" Association="Self.FK__Business__Curren__79C8DAEB">
+      <End Role="Currency" EntitySet="Currency" />
+      <End Role="Business" EntitySet="Business" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Account_AccountType" Association="Self.FK_Account_AccountType">
+      <End Role="AccountType" EntitySet="AccountType" />
+      <End Role="Account" EntitySet="Account" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Account_Business" Association="Self.FK_Account_Business">
+      <End Role="Business" EntitySet="Business" />
+      <End Role="Account" EntitySet="Account" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Account_BusinessCategory" Association="Self.FK_Account_BusinessCategory">
+      <End Role="BusinessCategory" EntitySet="BusinessCategory" />
+      <End Role="Account" EntitySet="Account" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Business_Group" Association="Self.FK_Business_Group">
+      <End Role="Group" EntitySet="Group" />
+      <End Role="Business" EntitySet="Business" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BusinessApplication_Business" Association="Self.FK_BusinessApplication_Business">
+      <End Role="Business" EntitySet="Business" />
+      <End Role="BusinessApplication" EntitySet="BusinessApplication" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BusinessCategory_Business" Association="Self.FK_BusinessCategory_Business">
+      <End Role="Business" EntitySet="Business" />
+      <End Role="BusinessCategory" EntitySet="BusinessCategory" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BusinessCategory_CategoryType" Association="Self.FK_BusinessCategory_CategoryType">
+      <End Role="CategoryType" EntitySet="CategoryType" />
+      <End Role="BusinessCategory" EntitySet="BusinessCategory" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BusinessCategory_ReferenceCategory" Association="Self.FK_BusinessCategory_ReferenceCategory">
+      <End Role="ReferenceCategory" EntitySet="ReferenceCategory" />
+      <End Role="BusinessCategory" EntitySet="BusinessCategory" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BusinessDataVaultShare_DVDocumentType" Association="Self.FK_BusinessDataVaultShare_DVDocumentType">
+      <End Role="DVDocumentType" EntitySet="DVDocumentType" />
+      <End Role="BusinessDataVaultShare" EntitySet="BusinessDataVaultShare" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BusinessDataVaultShare_UserManagement" Association="Self.FK_BusinessDataVaultShare_UserManagement">
+      <End Role="UserManagement" EntitySet="UserManagement" />
+      <End Role="BusinessDataVaultShare" EntitySet="BusinessDataVaultShare" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BusinessFile_Business" Association="Self.FK_BusinessFile_Business">
+      <End Role="Business" EntitySet="Business" />
+      <End Role="BusinessFile" EntitySet="BusinessFile" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BusinessFile_FileDetails" Association="Self.FK_BusinessFile_FileDetails">
+      <End Role="FileDetails" EntitySet="FileDetails" />
+      <End Role="BusinessFile" EntitySet="BusinessFile" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BusinessFinancialYear_Business" Association="Self.FK_BusinessFinancialYear_Business">
+      <End Role="Business" EntitySet="Business" />
+      <End Role="BusinessFinancialYear" EntitySet="BusinessFinancialYear" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BusinessModule_Business" Association="Self.FK_BusinessModule_Business">
+      <End Role="Business" EntitySet="Business" />
+      <End Role="BusinessModule" EntitySet="BusinessModule" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BusinessModule_Module" Association="Self.FK_BusinessModule_Module">
+      <End Role="Module" EntitySet="Module" />
+      <End Role="BusinessModule" EntitySet="BusinessModule" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BusinessPartner_Business" Association="Self.FK_BusinessPartner_Business">
+      <End Role="Business" EntitySet="Business" />
+      <End Role="BusinessPartner" EntitySet="BusinessPartner" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BusinessPartner_CustomPartner" Association="Self.FK_BusinessPartner_CustomPartner">
+      <End Role="CustomPartner" EntitySet="CustomPartner" />
+      <End Role="BusinessPartner" EntitySet="BusinessPartner" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BusinessUser_Business" Association="Self.FK_BusinessUser_Business">
+      <End Role="Business" EntitySet="Business" />
+      <End Role="BusinessUser" EntitySet="BusinessUser" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BusinessUser_UserManagement" Association="Self.FK_BusinessUser_UserManagement">
+      <End Role="UserManagement" EntitySet="UserManagement" />
+      <End Role="BusinessUser" EntitySet="BusinessUser" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CustomPartner_PartnerType" Association="Self.FK_CustomPartner_PartnerType">
+      <End Role="PartnerType" EntitySet="PartnerType" />
+      <End Role="CustomPartner" EntitySet="CustomPartner" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DataVaultAudit_Business" Association="Self.FK_DataVaultAudit_Business">
+      <End Role="Business" EntitySet="Business" />
+      <End Role="DataVaultAudit" EntitySet="DataVaultAudit" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DataVaultAudit_BusinessDataVaultShare" Association="Self.FK_DataVaultAudit_BusinessDataVaultShare">
+      <End Role="BusinessDataVaultShare" EntitySet="BusinessDataVaultShare" />
+      <End Role="DataVaultAudit" EntitySet="DataVaultAudit" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DataVaultAudit_DataVaultAuditActions" Association="Self.FK_DataVaultAudit_DataVaultAuditActions">
+      <End Role="DataVaultAuditActions" EntitySet="DataVaultAuditActions" />
+      <End Role="DataVaultAudit" EntitySet="DataVaultAudit" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DataVaultAudit_UserManagement" Association="Self.FK_DataVaultAudit_UserManagement">
+      <End Role="UserManagement" EntitySet="UserManagement" />
+      <End Role="DataVaultAudit" EntitySet="DataVaultAudit" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DataVaultFileShare_DataVaultFolderShare" Association="Self.FK_DataVaultFileShare_DataVaultFolderShare">
+      <End Role="DataVaultFolderShare" EntitySet="DataVaultFolderShare" />
+      <End Role="DataVaultFileShare" EntitySet="DataVaultFileShare" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DataVaultFileShare_DataVaultFolderShare1" Association="Self.FK_DataVaultFileShare_DataVaultFolderShare1">
+      <End Role="DataVaultFolderShare" EntitySet="DataVaultFolderShare" />
+      <End Role="DataVaultFileShare" EntitySet="DataVaultFileShare" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DataVaultFileShare_FileDetails" Association="Self.FK_DataVaultFileShare_FileDetails">
+      <End Role="FileDetails" EntitySet="FileDetails" />
+      <End Role="DataVaultFileShare" EntitySet="DataVaultFileShare" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DataVaultFolderShare_Business" Association="Self.FK_DataVaultFolderShare_Business">
+      <End Role="Business" EntitySet="Business" />
+      <End Role="DataVaultFolderShare" EntitySet="DataVaultFolderShare" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DataVaultFolderShare_BusinessDataVaultShare" Association="Self.FK_DataVaultFolderShare_BusinessDataVaultShare">
+      <End Role="BusinessDataVaultShare" EntitySet="BusinessDataVaultShare" />
+      <End Role="DataVaultFolderShare" EntitySet="DataVaultFolderShare" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DataVaultFolderShare_UserManagement" Association="Self.FK_DataVaultFolderShare_UserManagement">
+      <End Role="UserManagement" EntitySet="UserManagement" />
+      <End Role="DataVaultFolderShare" EntitySet="DataVaultFolderShare" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DataVaultFolderShareOwner_UserManagement" Association="Self.FK_DataVaultFolderShareOwner_UserManagement">
+      <End Role="UserManagement" EntitySet="UserManagement" />
+      <End Role="DataVaultFolderShare" EntitySet="DataVaultFolderShare" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DocumentDetails_Documents" Association="Self.FK_DocumentDetails_Documents">
+      <End Role="Documents" EntitySet="Documents" />
+      <End Role="DocumentDetails" EntitySet="DocumentDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DocumentNumbers_Business" Association="Self.FK_DocumentNumbers_Business">
+      <End Role="Business" EntitySet="Business" />
+      <End Role="DocumentNumbers" EntitySet="DocumentNumbers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DocumentNumbers_DocumentTypes" Association="Self.FK_DocumentNumbers_DocumentTypes">
+      <End Role="DocumentTypes" EntitySet="DocumentTypes" />
+      <End Role="DocumentNumbers" EntitySet="DocumentNumbers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Documents_Business" Association="Self.FK_Documents_Business">
+      <End Role="Business" EntitySet="Business" />
+      <End Role="Documents" EntitySet="Documents" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Documents_BusinessPartner" Association="Self.FK_Documents_BusinessPartner">
+      <End Role="BusinessPartner" EntitySet="BusinessPartner" />
+      <End Role="Documents" EntitySet="Documents" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Documents_DocumentTypes" Association="Self.FK_Documents_DocumentTypes">
+      <End Role="DocumentTypes" EntitySet="DocumentTypes" />
+      <End Role="Documents" EntitySet="Documents" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Documents_Status" Association="Self.FK_Documents_Status">
+      <End Role="Status" EntitySet="Status" />
+      <End Role="Documents" EntitySet="Documents" />
+    </AssociationSet>
+    <AssociationSet Name="FK_File_BusinessID" Association="Self.FK_File_BusinessID">
+      <End Role="Business" EntitySet="Business" />
+      <End Role="File" EntitySet="File" />
+    </AssociationSet>
+    <AssociationSet Name="FK_File_FileDetails" Association="Self.FK_File_FileDetails">
+      <End Role="FileDetails" EntitySet="FileDetails" />
+      <End Role="File" EntitySet="File" />
+    </AssociationSet>
+    <AssociationSet Name="FK_File_FileStatus" Association="Self.FK_File_FileStatus">
+      <End Role="FileStatus" EntitySet="FileStatus" />
+      <End Role="File" EntitySet="File" />
+    </AssociationSet>
+    <AssociationSet Name="FK_File_User" Association="Self.FK_File_User">
+      <End Role="UserManagement" EntitySet="UserManagement" />
+      <End Role="File" EntitySet="File" />
+    </AssociationSet>
+    <AssociationSet Name="FK_File_UserManagement" Association="Self.FK_File_UserManagement">
+      <End Role="UserManagement" EntitySet="UserManagement" />
+      <End Role="File" EntitySet="File" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FinancialCategory_FinancialCategoryType" Association="Self.FK_FinancialCategory_FinancialCategoryType">
+      <End Role="FinancialCategoryType" EntitySet="FinancialCategoryType" />
+      <End Role="FinancialCategory" EntitySet="FinancialCategory" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GroupReferenceCategory_Group" Association="Self.FK_GroupReferenceCategory_Group">
+      <End Role="Group" EntitySet="Group" />
+      <End Role="GroupTemplate" EntitySet="GroupTemplate" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GroupTemplate_ReferenceCategory" Association="Self.FK_GroupTemplate_ReferenceCategory">
+      <End Role="ReferenceCategory" EntitySet="ReferenceCategory" />
+      <End Role="GroupTemplate" EntitySet="GroupTemplate" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HelpPage_HelpTopic" Association="Self.FK_HelpPage_HelpTopic">
+      <End Role="HelpTopic" EntitySet="HelpTopic" />
+      <End Role="HelpPage" EntitySet="HelpPage" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HelpPage_Page" Association="Self.FK_HelpPage_Page">
+      <End Role="Page" EntitySet="Page" />
+      <End Role="HelpPage" EntitySet="HelpPage" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HelpTopic_HelpType" Association="Self.FK_HelpTopic_HelpType">
+      <End Role="HelpType" EntitySet="HelpType" />
+      <End Role="HelpTopic" EntitySet="HelpTopic" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Item_ItemGroup" Association="Self.FK_Item_ItemGroup">
+      <End Role="ItemGroup" EntitySet="ItemGroup" />
+      <End Role="Item" EntitySet="Item" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Item_ItemType" Association="Self.FK_Item_ItemType">
+      <End Role="ItemType" EntitySet="ItemType" />
+      <End Role="Item" EntitySet="Item" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Item_ItemUnit" Association="Self.FK_Item_ItemUnit">
+      <End Role="ItemUnit" EntitySet="ItemUnit" />
+      <End Role="Item" EntitySet="Item" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ItemAdjustmentCategory_BusinessCategory" Association="Self.FK_ItemAdjustmentCategory_BusinessCategory">
+      <End Role="BusinessCategory" EntitySet="BusinessCategory" />
+      <End Role="Item" EntitySet="Item" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ItemCOSCategory_BusinessCategory" Association="Self.FK_ItemCOSCategory_BusinessCategory">
+      <End Role="BusinessCategory" EntitySet="BusinessCategory" />
+      <End Role="Item" EntitySet="Item" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ItemDetail_DocumentDetails" Association="Self.FK_ItemDetail_DocumentDetails">
+      <End Role="DocumentDetails" EntitySet="DocumentDetails" />
+      <End Role="ItemDetail" EntitySet="ItemDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ItemDetail_Item" Association="Self.FK_ItemDetail_Item">
+      <End Role="Item" EntitySet="Item" />
+      <End Role="ItemDetail" EntitySet="ItemDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ItemDetail_ItemDetailType" Association="Self.FK_ItemDetail_ItemDetailType">
+      <End Role="ItemDetailType" EntitySet="ItemDetailType" />
+      <End Role="ItemDetail" EntitySet="ItemDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ItemDetail_QWillTransactionsDetail" Association="Self.FK_ItemDetail_QWillTransactionsDetail">
+      <End Role="QWillTransactionsDetail" EntitySet="QWillTransactionsDetail" />
+      <End Role="ItemDetail" EntitySet="ItemDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ItemGroupAdjustmentCategory_BusinessCategory" Association="Self.FK_ItemGroupAdjustmentCategory_BusinessCategory">
+      <End Role="BusinessCategory" EntitySet="BusinessCategory" />
+      <End Role="ItemGroup" EntitySet="ItemGroup" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ItemGroupCOSCategory_BusinessCategory" Association="Self.FK_ItemGroupCOSCategory_BusinessCategory">
+      <End Role="BusinessCategory" EntitySet="BusinessCategory" />
+      <End Role="ItemGroup" EntitySet="ItemGroup" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ItemGroupHoldingCategory_BusinessCategory" Association="Self.FK_ItemGroupHoldingCategory_BusinessCategory">
+      <End Role="BusinessCategory" EntitySet="BusinessCategory" />
+      <End Role="ItemGroup" EntitySet="ItemGroup" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ItemGroupSaleCategory_BusinessCategory" Association="Self.FK_ItemGroupSaleCategory_BusinessCategory">
+      <End Role="BusinessCategory" EntitySet="BusinessCategory" />
+      <End Role="ItemGroup" EntitySet="ItemGroup" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ItemHoldingCategory_BusinessCategory" Association="Self.FK_ItemHoldingCategory_BusinessCategory">
+      <End Role="BusinessCategory" EntitySet="BusinessCategory" />
+      <End Role="Item" EntitySet="Item" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ItemSaleCategory_BusinessCategory" Association="Self.FK_ItemSaleCategory_BusinessCategory">
+      <End Role="BusinessCategory" EntitySet="BusinessCategory" />
+      <End Role="Item" EntitySet="Item" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Messages_MessageThread" Association="Self.FK_Messages_MessageThread">
+      <End Role="MessageThread" EntitySet="MessageThread" />
+      <End Role="Messages" EntitySet="Messages" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Messages_UserManagement" Association="Self.FK_Messages_UserManagement">
+      <End Role="UserManagement" EntitySet="UserManagement" />
+      <End Role="Messages" EntitySet="Messages" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MessageThread_UserManagement" Association="Self.FK_MessageThread_UserManagement">
+      <End Role="UserManagement" EntitySet="UserManagement" />
+      <End Role="MessageThread" EntitySet="MessageThread" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MessageThreadLinks_MessageThread" Association="Self.FK_MessageThreadLinks_MessageThread">
+      <End Role="MessageThread" EntitySet="MessageThread" />
+      <End Role="MessageThreadLinks" EntitySet="MessageThreadLinks" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MessageThreadParticpants_MessageThread" Association="Self.FK_MessageThreadParticpants_MessageThread">
+      <End Role="MessageThread" EntitySet="MessageThread" />
+      <End Role="MessageThreadParticpants" EntitySet="MessageThreadParticpants" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MessageThreadParticpants_UserManagement" Association="Self.FK_MessageThreadParticpants_UserManagement">
+      <End Role="UserManagement" EntitySet="UserManagement" />
+      <End Role="MessageThreadParticpants" EntitySet="MessageThreadParticpants" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ModulePage_Module" Association="Self.FK_ModulePage_Module">
+      <End Role="Module" EntitySet="Module" />
+      <End Role="ModulePage" EntitySet="ModulePage" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ModulePage_Page" Association="Self.FK_ModulePage_Page">
+      <End Role="Page" EntitySet="Page" />
+      <End Role="ModulePage" EntitySet="ModulePage" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PageRole_Page" Association="Self.FK_PageRole_Page">
+      <End Role="Page" EntitySet="Page" />
+      <End Role="PageRole" EntitySet="PageRole" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PageRole_Roles" Association="Self.FK_PageRole_Roles">
+      <End Role="Roles" EntitySet="Roles" />
+      <End Role="PageRole" EntitySet="PageRole" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PartnerAddress_AddressType" Association="Self.FK_PartnerAddress_AddressType">
+      <End Role="AddressType" EntitySet="AddressType" />
+      <End Role="PartnerAddress" EntitySet="PartnerAddress" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PartnerAddress_BusinessPartner" Association="Self.FK_PartnerAddress_BusinessPartner">
+      <End Role="BusinessPartner" EntitySet="BusinessPartner" />
+      <End Role="PartnerAddress" EntitySet="PartnerAddress" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PartnerContact_BusinessPartner" Association="Self.FK_PartnerContact_BusinessPartner">
+      <End Role="BusinessPartner" EntitySet="BusinessPartner" />
+      <End Role="PartnerContact" EntitySet="PartnerContact" />
+    </AssociationSet>
+    <AssociationSet Name="FK_QwillTransactionAllocation_Documents" Association="Self.FK_QwillTransactionAllocation_Documents">
+      <End Role="Documents" EntitySet="Documents" />
+      <End Role="QwillTransactionAllocation" EntitySet="QwillTransactionAllocation" />
+    </AssociationSet>
+    <AssociationSet Name="FK_QwillTransactionAllocation_QwillTransactions1" Association="Self.FK_QwillTransactionAllocation_QwillTransactions1">
+      <End Role="QwillTransactions" EntitySet="QwillTransactions" />
+      <End Role="QwillTransactionAllocationDF" EntitySet="QwillTransactionAllocationDF" />
+    </AssociationSet>
+    <AssociationSet Name="FK_QwillTransactionAllocation_QwillTransactions2" Association="Self.FK_QwillTransactionAllocation_QwillTransactions2">
+      <End Role="QwillTransactions" EntitySet="QwillTransactions" />
+      <End Role="QwillTransactionAllocationDF" EntitySet="QwillTransactionAllocationDF" />
+    </AssociationSet>
+    <AssociationSet Name="FK_QwillTransactionAllocation_UserManagement" Association="Self.FK_QwillTransactionAllocation_UserManagement">
+      <End Role="UserManagement" EntitySet="UserManagement" />
+      <End Role="QwillTransactionAllocation" EntitySet="QwillTransactionAllocation" />
+    </AssociationSet>
+    <AssociationSet Name="FK_QwillTransactions_Account" Association="Self.FK_QwillTransactions_Account">
+      <End Role="Account" EntitySet="Account" />
+      <End Role="QwillTransactions" EntitySet="QwillTransactions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_QwillTransactions_Business" Association="Self.FK_QwillTransactions_Business">
+      <End Role="Business" EntitySet="Business" />
+      <End Role="QwillTransactions" EntitySet="QwillTransactions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_QwillTransactions_BusinessPartner" Association="Self.FK_QwillTransactions_BusinessPartner">
+      <End Role="BusinessPartner" EntitySet="BusinessPartner" />
+      <End Role="QwillTransactions" EntitySet="QwillTransactions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_QwillTransactions_Status" Association="Self.FK_QwillTransactions_Status">
+      <End Role="Status" EntitySet="Status" />
+      <End Role="QwillTransactions" EntitySet="QwillTransactions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_QWillTransactionsDetail_QwillTransactions" Association="Self.FK_QWillTransactionsDetail_QwillTransactions">
+      <End Role="QwillTransactions" EntitySet="QwillTransactions" />
+      <End Role="QWillTransactionsDetail" EntitySet="QWillTransactionsDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_QwillTransactionsDetailTax_QWillTransactionsDetail" Association="Self.FK_QwillTransactionsDetailTax_QWillTransactionsDetail">
+      <End Role="QWillTransactionsDetail" EntitySet="QWillTransactionsDetail" />
+      <End Role="QwillTransactionsDetailTax" EntitySet="QwillTransactionsDetailTax" />
+    </AssociationSet>
+    <AssociationSet Name="FK_QwillTransactionsDetailTax_VatType" Association="Self.FK_QwillTransactionsDetailTax_VatType">
+      <End Role="VatType" EntitySet="VatType" />
+      <End Role="QwillTransactionsDetailTax" EntitySet="QwillTransactionsDetailTax" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ReferenceCategory_FinancialCategory" Association="Self.FK_ReferenceCategory_FinancialCategory">
+      <End Role="FinancialCategory" EntitySet="FinancialCategory" />
+      <End Role="ReferenceCategory" EntitySet="ReferenceCategory" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ReportModule_Module" Association="Self.FK_ReportModule_Module">
+      <End Role="Module" EntitySet="Module" />
+      <End Role="ReportModule" EntitySet="ReportModule" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ReportModule_Reports" Association="Self.FK_ReportModule_Reports">
+      <End Role="Reports" EntitySet="Reports" />
+      <End Role="ReportModule" EntitySet="ReportModule" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ReportRoles_Reports" Association="Self.FK_ReportRoles_Reports">
+      <End Role="Reports" EntitySet="Reports" />
+      <End Role="ReportRoles" EntitySet="ReportRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ReportRoles_Roles" Association="Self.FK_ReportRoles_Roles">
+      <End Role="Roles" EntitySet="Roles" />
+      <End Role="ReportRoles" EntitySet="ReportRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RoleIntegration_Role" Association="Self.FK_RoleIntegration_Role">
+      <End Role="Roles" EntitySet="Roles" />
+      <End Role="RoleIntegration" EntitySet="RoleIntegration" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Roles_RoleType" Association="Self.FK_Roles_RoleType">
+      <End Role="RoleType" EntitySet="RoleType" />
+      <End Role="Roles" EntitySet="Roles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Status_Status" Association="Self.FK_Status_Status">
+      <End Role="Status" EntitySet="Status" />
+      <End Role="Status1" EntitySet="Status" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TransactionType_EntryType" Association="Self.FK_TransactionType_EntryType">
+      <End Role="EntryType" EntitySet="EntryType" />
+      <End Role="TransactionType" EntitySet="TransactionType" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TransactionType_Status" Association="Self.FK_TransactionType_Status">
+      <End Role="Status" EntitySet="Status" />
+      <End Role="TransactionType" EntitySet="TransactionType" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UploadApplicationCode_FinancialCategory" Association="Self.FK_UploadApplicationCode_FinancialCategory">
+      <End Role="FinancialCategory" EntitySet="FinancialCategory" />
+      <End Role="UploadApplicationCode" EntitySet="UploadApplicationCode" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UploadApplicationType_UploadApplication" Association="Self.FK_UploadApplicationType_UploadApplication">
+      <End Role="UploadApplication" EntitySet="UploadApplication" />
+      <End Role="UploadApplicationType" EntitySet="UploadApplicationType" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UploadApplicationType_UploadType" Association="Self.FK_UploadApplicationType_UploadType">
+      <End Role="UploadType" EntitySet="UploadType" />
+      <End Role="UploadApplicationType" EntitySet="UploadApplicationType" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UploadFrequency_Frequency" Association="Self.FK_UploadFrequency_Frequency">
+      <End Role="Frequency" EntitySet="Frequency" />
+      <End Role="UploadFrequency" EntitySet="UploadFrequency" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UploadFrequency_UploadType" Association="Self.FK_UploadFrequency_UploadType">
+      <End Role="UploadType" EntitySet="UploadType" />
+      <End Role="UploadFrequency" EntitySet="UploadFrequency" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UploadSchedule_Business" Association="Self.FK_UploadSchedule_Business">
+      <End Role="Business" EntitySet="Business" />
+      <End Role="UploadSchedule" EntitySet="UploadSchedule" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UploadSchedule_Frequency" Association="Self.FK_UploadSchedule_Frequency">
+      <End Role="Frequency" EntitySet="Frequency" />
+      <End Role="UploadSchedule" EntitySet="UploadSchedule" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UploadSchedule_UploadType" Association="Self.FK_UploadSchedule_UploadType">
+      <End Role="UploadType" EntitySet="UploadType" />
+      <End Role="UploadSchedule" EntitySet="UploadSchedule" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UploadStaging_Business" Association="Self.FK_UploadStaging_Business">
+      <End Role="Business" EntitySet="Business" />
+      <End Role="UploadStaging" EntitySet="UploadStaging" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UploadStaging_UploadApplication" Association="Self.FK_UploadStaging_UploadApplication">
+      <End Role="UploadApplication" EntitySet="UploadApplication" />
+      <End Role="UploadStaging" EntitySet="UploadStaging" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UploadStaging_UploadStatus" Association="Self.FK_UploadStaging_UploadStatus">
+      <End Role="UploadStatus" EntitySet="UploadStatus" />
+      <End Role="UploadStaging" EntitySet="UploadStaging" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UploadStaging_UploadType" Association="Self.FK_UploadStaging_UploadType">
+      <End Role="UploadType" EntitySet="UploadType" />
+      <End Role="UploadStaging" EntitySet="UploadStaging" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UploadStagingAllocations_UploadStaging" Association="Self.FK_UploadStagingAllocations_UploadStaging">
+      <End Role="UploadStaging" EntitySet="UploadStaging" />
+      <End Role="UploadStagingAllocations" EntitySet="UploadStagingAllocations" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UploadStagingAllocations_UploadStagingAllocations" Association="Self.FK_UploadStagingAllocations_UploadStagingAllocations">
+      <End Role="UploadStagingAllocations" EntitySet="UploadStagingAllocations" />
+      <End Role="UploadStagingAllocations1" EntitySet="UploadStagingAllocations" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UploadStagingPartners_UploadStaging" Association="Self.FK_UploadStagingPartners_UploadStaging">
+      <End Role="UploadStaging" EntitySet="UploadStaging" />
+      <End Role="UploadStagingPartners" EntitySet="UploadStagingPartners" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UploadStagingTransactions_UploadStaging" Association="Self.FK_UploadStagingTransactions_UploadStaging">
+      <End Role="UploadStaging" EntitySet="UploadStaging" />
+      <End Role="UploadStagingTransactions" EntitySet="UploadStagingTransactions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UploadStagingTransactionType_TransactionType" Association="Self.FK_UploadStagingTransactionType_TransactionType">
+      <End Role="TransactionType" EntitySet="TransactionType" />
+      <End Role="UploadStagingTransactionType" EntitySet="UploadStagingTransactionType" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UploadStagingTransactionType_UploadApplication" Association="Self.FK_UploadStagingTransactionType_UploadApplication">
+      <End Role="UploadApplication" EntitySet="UploadApplication" />
+      <End Role="UploadStagingTransactionType" EntitySet="UploadStagingTransactionType" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserAudit_UserManagement" Association="Self.FK_UserAudit_UserManagement">
+      <End Role="UserManagement" EntitySet="UserManagement" />
+      <End Role="UserAudit" EntitySet="UserAudit" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserAuthentication_UserManagement" Association="Self.FK_UserAuthentication_UserManagement">
+      <End Role="UserManagement" EntitySet="UserManagement" />
+      <End Role="UserAuthentication" EntitySet="UserAuthentication" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserManagement_UserType" Association="Self.FK_UserManagement_UserType">
+      <End Role="UserType" EntitySet="UserType" />
+      <End Role="UserManagement" EntitySet="UserManagement" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserRoles_Roles" Association="Self.FK_UserRoles_Roles">
+      <End Role="Roles" EntitySet="Roles" />
+      <End Role="UserRoles" EntitySet="UserRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserRoles_UserManagement" Association="Self.FK_UserRoles_UserManagement">
+      <End Role="UserManagement" EntitySet="UserManagement" />
+      <End Role="UserRoles" EntitySet="UserRoles" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
