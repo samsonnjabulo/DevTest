@@ -9,14 +9,7 @@ import { DepartmentService } from '../department/department.service';
   styleUrls: ['./create-student.component.css']
 })
 export class CreateStudentComponent implements OnInit {
- //gender = 'male';
  departments
-//  departments : Department[] = [
-//    {id:1,name:'IT'},
-//    {id:2,name:'Accounting'},
-//    {id:3,name:'Science'},
-//    {id:4,name:'General'}
-//   ];
   constructor(public _dep:DepartmentService) { }
 
   ngOnInit() {
