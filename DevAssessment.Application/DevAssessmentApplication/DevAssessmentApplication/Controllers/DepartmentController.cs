@@ -1,12 +1,5 @@
-﻿using DevAssessment.DTO;
-using DevAssessment.Service;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
+﻿using DevAssessment.Service;
 using System.Web.Http;
-using System.Web.Http.Results;
 
 namespace DevAssessmentApplication.Controllers
 {
@@ -18,13 +11,7 @@ namespace DevAssessmentApplication.Controllers
         {
             departmentService = new DepartmentService();
         }
-           
-        //public HttpResponseMessage Get(int id)
-        //{
-        //    return Request.CreateResponse(HttpStatusCode.OK, departmentService.GetDepartmentByID(id));           
-            
-        //}
-        
+      
         [HttpGet]
         public IHttpActionResult GetAllDepartments()
         {
@@ -38,6 +25,12 @@ namespace DevAssessmentApplication.Controllers
 
         }
 
-      
+        //[HttpGet]
+        //public IHttpActionResult GetDepartment(int id)
+        //{
+        //    return Ok(departmentService.GetDepartmentByID(id));
+        //}
+
+
     }
 }
