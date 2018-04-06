@@ -1,4 +1,5 @@
 ﻿using DevAssessment.DTO;
+using System.Collections.Generic;
 
 namespace DevAssessment.Service
 {
@@ -6,5 +7,6 @@ namespace DevAssessment.Service
     {
         DepartmentDTO SaveDepartment(DepartmentDTO departmentDTO);
         DepartmentDTO GetDepartmentByID(int id);
+        List<DepartmentDTO> GetAllDepartment();
     }
 }

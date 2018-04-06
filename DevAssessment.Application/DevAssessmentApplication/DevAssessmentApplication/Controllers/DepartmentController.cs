@@ -18,32 +18,26 @@ namespace DevAssessmentApplication.Controllers
         {
             departmentService = new DepartmentService();
         }
-        // GET api/values
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
-
-        // GET api/values/5
-        public HttpResponseMessage Get(int id)
-        {
-            return Request.CreateResponse(HttpStatusCode.OK, departmentService.GetDepartmentByID(id));           
+           
+        //public HttpResponseMessage Get(int id)
+        //{
+        //    return Request.CreateResponse(HttpStatusCode.OK, departmentService.GetDepartmentByID(id));           
             
+        //}
+        
+        [HttpGet]
+        public IHttpActionResult GetAllDepartments()
+        {
+            var results =departmentService.GetAllDepartment();
+            if (results != null)
+            {
+                return Ok(results);
+            }
+
+            return BadRequest("Something went wrong");
+
         }
 
-        // POST api/values
-        public void Post([FromBody]string value)
-        {
-        }
-
-        // PUT api/values/5
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-
-        // DELETE api/values/5
-        public void Delete(int id)
-        {
-        }
+      
     }
 }

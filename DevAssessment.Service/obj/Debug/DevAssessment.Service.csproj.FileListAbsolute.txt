@@ -18,7 +18,6 @@ C:\GitHub\DevTest\DevAssessment.Application\DevAssessmentApplication\DevAssessme
 C:\GitHub\DevTest\DevAssessment.Application\DevAssessmentApplication\DevAssessment.Service\bin\Debug\AutoMapper.xml
 C:\GitHub\DevTest\DevAssessment.Application\DevAssessmentApplication\DevAssessment.Service\obj\Debug\DevAssessment.Service.dll
 C:\GitHub\DevTest\DevAssessment.Application\DevAssessmentApplication\DevAssessment.Service\obj\Debug\DevAssessment.Service.pdb
-C:\GitHub\DevTest\DevAssessment.Service\obj\Debug\DevAssessment.Service.csproj.CoreCompileInputs.cache
 C:\GitHub\DevTest\DevAssessment.Service\bin\Debug\DevAssessment.Service.dll
 C:\GitHub\DevTest\DevAssessment.Service\bin\Debug\DevAssessment.Service.pdb
 C:\GitHub\DevTest\DevAssessment.Service\bin\Debug\DevAssessment.Core.dll
@@ -34,5 +33,6 @@ C:\GitHub\DevTest\DevAssessment.Service\bin\Debug\DevAssessment.EntityFramework.
 C:\GitHub\DevTest\DevAssessment.Service\bin\Debug\DevAssessment.EntityFramework.dll.config
 C:\GitHub\DevTest\DevAssessment.Service\bin\Debug\AutoMapper.xml
 C:\GitHub\DevTest\DevAssessment.Service\obj\Debug\DevAssessment.Service.csprojResolveAssemblyReference.cache
+C:\GitHub\DevTest\DevAssessment.Service\obj\Debug\DevAssessment.Service.csproj.CoreCompileInputs.cache
 C:\GitHub\DevTest\DevAssessment.Service\obj\Debug\DevAssessment.Service.dll
 C:\GitHub\DevTest\DevAssessment.Service\obj\Debug\DevAssessment.Service.pdb

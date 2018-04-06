@@ -1,7 +1,5 @@
 C:\Reference Projects\Dev Assessment\DevAssessment.Application\DevAssessmentApplication\DevAssessmentApplication\obj\Debug\DevAssessmentApplication.csproj.CoreCompileInputs.cache
 C:\Reference Projects\Dev Assessment\DevAssessment.Application\DevAssessmentApplication\DevAssessmentApplication\obj\Debug\DevAssessmentApplication.csprojResolveAssemblyReference.cache
-C:\GitHub\DevTest\DevAssessment.Application\DevAssessmentApplication\DevAssessmentApplication\obj\Debug\DevAssessmentApplication.csprojResolveAssemblyReference.cache
-C:\GitHub\DevTest\DevAssessment.Application\DevAssessmentApplication\DevAssessmentApplication\obj\Debug\DevAssessmentApplication.csproj.CoreCompileInputs.cache
 C:\GitHub\DevTest\DevAssessment.Application\DevAssessmentApplication\DevAssessmentApplication\bin\ApplicationInsights.config
 C:\GitHub\DevTest\DevAssessment.Application\DevAssessmentApplication\DevAssessmentApplication\bin\DevAssessmentApplication.dll.config
 C:\GitHub\DevTest\DevAssessment.Application\DevAssessmentApplication\DevAssessmentApplication\bin\DevAssessmentApplication.dll
@@ -83,5 +81,7 @@ C:\GitHub\DevTest\DevAssessment.Application\DevAssessmentApplication\DevAssessme
 C:\GitHub\DevTest\DevAssessment.Application\DevAssessmentApplication\DevAssessmentApplication\bin\DevAssessment.EntityFramework.pdb
 C:\GitHub\DevTest\DevAssessment.Application\DevAssessmentApplication\DevAssessmentApplication\bin\DevAssessment.EntityFramework.dll.config
 C:\GitHub\DevTest\DevAssessment.Application\DevAssessmentApplication\DevAssessmentApplication\bin\AutoMapper.xml
+C:\GitHub\DevTest\DevAssessment.Application\DevAssessmentApplication\DevAssessmentApplication\obj\Debug\DevAssessmentApplication.csprojResolveAssemblyReference.cache
+C:\GitHub\DevTest\DevAssessment.Application\DevAssessmentApplication\DevAssessmentApplication\obj\Debug\DevAssessmentApplication.csproj.CoreCompileInputs.cache
 C:\GitHub\DevTest\DevAssessment.Application\DevAssessmentApplication\DevAssessmentApplication\obj\Debug\DevAssessmentApplication.dll
 C:\GitHub\DevTest\DevAssessment.Application\DevAssessmentApplication\DevAssessmentApplication\obj\Debug\DevAssessmentApplication.pdb

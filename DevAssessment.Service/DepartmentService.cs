@@ -1,6 +1,7 @@
 ﻿using DevAssessment.Core.Interfaces;
 using DevAssessment.DTO;
 using System;
+using System.Collections.Generic;
 
 namespace DevAssessment.Service
 {
@@ -25,6 +26,19 @@ namespace DevAssessment.Service
             catch (Exception ex)
             {
                 return new DepartmentDTO() { Error = "Something went wrong please try again later" };
+            }
+        }
+
+        public List<DepartmentDTO> GetAllDepartment()
+        {
+            try
+            {
+                var results = _uow.DepartmentRepository.GetAllDepartments();
+               return results;
+            }
+            catch (Exception ex)
+            {
+                return new List<DepartmentDTO>();
             }
         }
 

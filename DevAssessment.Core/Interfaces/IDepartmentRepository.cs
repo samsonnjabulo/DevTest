@@ -11,6 +11,7 @@ namespace DevAssessment.Core.Interfaces
         int SaveDepartment(DepartmentDTO DepartmentDTO);
         List<DepartmentDTO> GetDepartments(Expression<Func<Department, bool>> predicate);
         DepartmentDTO GetDepartmentByID(int id);
+        List<DepartmentDTO> GetAllDepartments();
 
     }
 }

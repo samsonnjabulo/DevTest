@@ -24,6 +24,12 @@ namespace DevAssessment.Core.Repositories
             return AutoMapper.Mapper.Map<List<DepartmentDTO>>(results);
         }
 
+        public List<DepartmentDTO> GetAllDepartments()
+        {
+            var results = GetAll(); ;
+            return AutoMapper.Mapper.Map<List<DepartmentDTO>>(results);
+        }
+
         public DepartmentDTO GetDepartmentByID(int id)
         {
             var department = Get(id);
