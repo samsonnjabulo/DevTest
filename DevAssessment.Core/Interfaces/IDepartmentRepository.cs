@@ -3,7 +3,6 @@ using DevAssessment.EntityFramework.Context;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
-using System.Data.Entity;
 
 namespace DevAssessment.Core.Interfaces
 {

@@ -1,2 +1,0 @@
-C:\Reference Projects\Dev Assessment\DevAssessment.Application\DevAssessmentApplication\DevAssessment.Service\obj\Debug\DevAssessment.Service.csprojResolveAssemblyReference.cache
-C:\Reference Projects\Dev Assessment\DevAssessment.Application\DevAssessmentApplication\DevAssessment.Service\obj\Debug\DevAssessment.Service.csproj.CoreCompileInputs.cache

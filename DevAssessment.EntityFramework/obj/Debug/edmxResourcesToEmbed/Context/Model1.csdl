@@ -4,7 +4,7 @@
     <Key>
       <PropertyRef Name="ContactPreference1" />
     </Key>
-    <Property Name="ContactPreference1" Type="Int32" Nullable="false" />
+    <Property Name="ContactPreference1" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Students" Relationship="Self.FK_Student_ContactPreference" FromRole="ContactPreference" ToRole="Student" />
   </EntityType>
@@ -12,9 +12,9 @@
     <Key>
       <PropertyRef Name="DepartmentID" />
     </Key>
-    <Property Name="DepartmentID" Type="Int32" Nullable="false" />
+    <Property Name="DepartmentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="Students" Relationship="DevAssessmentDBModel.FK_Student_Department" FromRole="Department" ToRole="Student" />
+    <NavigationProperty Name="Students" Relationship="Self.FK_Student_Department" FromRole="Department" ToRole="Student" />
   </EntityType>
   <EntityType Name="Gender">
     <Key>
@@ -22,7 +22,7 @@
     </Key>
     <Property Name="GenderID" Type="Int32" Nullable="false" />
     <Property Name="Description" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-    <NavigationProperty Name="Students" Relationship="DevAssessmentDBModel.FK_Student_Gender" FromRole="Gender" ToRole="Student" />
+    <NavigationProperty Name="Students" Relationship="Self.FK_Student_Gender" FromRole="Gender" ToRole="Student" />
   </EntityType>
   <EntityType Name="Student">
     <Key>
@@ -36,10 +36,10 @@
     <Property Name="PhoneNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
     <Property Name="ContactPreference" Type="Int32" Nullable="false" />
     <Property Name="PhotoPath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="ContactPreference1" Relationship="Self.FK_Student_ContactPreference" FromRole="Student" ToRole="ContactPreference" />
     <Property Name="DepartmentID" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="Department" Relationship="DevAssessmentDBModel.FK_Student_Department" FromRole="Student" ToRole="Department" />
-    <NavigationProperty Name="Gender" Relationship="DevAssessmentDBModel.FK_Student_Gender" FromRole="Student" ToRole="Gender" />
+    <NavigationProperty Name="ContactPreference1" Relationship="Self.FK_Student_ContactPreference" FromRole="Student" ToRole="ContactPreference" />
+    <NavigationProperty Name="Department" Relationship="Self.FK_Student_Department" FromRole="Student" ToRole="Department" />
+    <NavigationProperty Name="Gender" Relationship="Self.FK_Student_Gender" FromRole="Student" ToRole="Gender" />
   </EntityType>
   <Association Name="FK_Student_ContactPreference">
     <End Role="ContactPreference" Type="Self.ContactPreference" Multiplicity="1" />
@@ -53,28 +53,9 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="DevAssessmentDBEntities" annotation:LazyLoadingEnabled="true">
-    <EntitySet Name="ContactPreferences" EntityType="Self.ContactPreference" />
-    <EntitySet Name="Departments" EntityType="Self.Department" />
-    <EntitySet Name="Genders" EntityType="Self.Gender" />
-    <EntitySet Name="Students" EntityType="Self.Student" />
-    <AssociationSet Name="FK_Student_ContactPreference" Association="Self.FK_Student_ContactPreference">
-      <End Role="ContactPreference" EntitySet="ContactPreferences" />
-      <End Role="Student" EntitySet="Students" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Student_Department" Association="DevAssessmentDBModel.FK_Student_Department">
-      <End Role="Department" EntitySet="Departments" />
-      <End Role="Student" EntitySet="Students" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Student_Gender" Association="DevAssessmentDBModel.FK_Student_Gender">
-      <End Role="Gender" EntitySet="Genders" />
-      <End Role="Student" EntitySet="Students" />
-    </AssociationSet>
-    <EntitySet Name="sysdiagrams" EntityType="DevAssessmentDBModel.sysdiagram" />
-  </EntityContainer>
   <Association Name="FK_Student_Department">
-    <End Type="DevAssessmentDBModel.Department" Role="Department" Multiplicity="1" />
-    <End Type="DevAssessmentDBModel.Student" Role="Student" Multiplicity="*" />
+    <End Role="Department" Type="Self.Department" Multiplicity="1" />
+    <End Role="Student" Type="Self.Student" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Department">
         <PropertyRef Name="DepartmentID" />
@@ -85,8 +66,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Student_Gender">
-    <End Type="DevAssessmentDBModel.Gender" Role="Gender" Multiplicity="1" />
-    <End Type="DevAssessmentDBModel.Student" Role="Student" Multiplicity="*" />
+    <End Role="Gender" Type="Self.Gender" Multiplicity="1" />
+    <End Role="Student" Type="Self.Student" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Gender">
         <PropertyRef Name="GenderID" />
@@ -96,14 +77,22 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityType Name="sysdiagram">
-    <Key>
-      <PropertyRef Name="diagram_id" />
-    </Key>
-    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-    <Property Name="principal_id" Type="Int32" Nullable="false" />
-    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="version" Type="Int32" />
-    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
-  </EntityType>
+  <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="ContactPreferences" EntityType="Self.ContactPreference" />
+    <EntitySet Name="Departments" EntityType="Self.Department" />
+    <EntitySet Name="Genders" EntityType="Self.Gender" />
+    <EntitySet Name="Students" EntityType="Self.Student" />
+    <AssociationSet Name="FK_Student_ContactPreference" Association="Self.FK_Student_ContactPreference">
+      <End Role="ContactPreference" EntitySet="ContactPreferences" />
+      <End Role="Student" EntitySet="Students" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Student_Department" Association="Self.FK_Student_Department">
+      <End Role="Department" EntitySet="Departments" />
+      <End Role="Student" EntitySet="Students" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Student_Gender" Association="Self.FK_Student_Gender">
+      <End Role="Gender" EntitySet="Genders" />
+      <End Role="Student" EntitySet="Students" />
+    </AssociationSet>
+  </EntityContainer>
 </Schema>

@@ -4,3 +4,5 @@ C:\Reference Projects\Dev Assessment\Luminous.DebtorsFinance.Core\obj\Debug\Lumi
 C:\Reference Projects\Dev Assessment\Luminous.DebtorsFinance.Core\obj\Debug\Luminous.DebtorsFinance.Core.pdb
 C:\Reference Projects\Dev Assessment\DevAssessment.Core\obj\Debug\DevAssessment.Core.csprojResolveAssemblyReference.cache
 C:\Reference Projects\Dev Assessment\DevAssessment.Core\obj\Debug\DevAssessment.Core.csproj.CoreCompileInputs.cache
+C:\GitHub\DevTest\DevAssessment.Core\obj\Debug\DevAssessment.Core.csprojResolveAssemblyReference.cache
+C:\GitHub\DevTest\DevAssessment.Core\obj\Debug\DevAssessment.Core.csproj.CoreCompileInputs.cache

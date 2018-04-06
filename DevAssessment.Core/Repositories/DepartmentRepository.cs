@@ -27,7 +27,7 @@ namespace DevAssessment.Core.Repositories
         public DepartmentDTO GetDepartmentByID(int id)
         {
             var department = Get(id);
-            return AutoMapper.Mapper.Map<DepartmentDTO>(new Department() { DepartmentID = id });
+            return AutoMapper.Mapper.Map<DepartmentDTO>(department);
         }
         public int SaveDepartment(DepartmentDTO DepartmentDTO)
         {

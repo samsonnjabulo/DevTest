@@ -6,3 +6,5 @@ C:\Reference Projects\Dev Assessment\DevAssessment.EntityFramework\obj\Debug\Dev
 C:\Reference Projects\Dev Assessment\DevAssessment.EntityFramework\obj\Debug\DevAssessment.EntityFramework.csproj.CoreCompileInputs.cache
 C:\Reference Projects\Dev Assessment\DevAssessment.EntityFramework\obj\Debug\DevAssessment.EntityFramework.dll
 C:\Reference Projects\Dev Assessment\DevAssessment.EntityFramework\obj\Debug\DevAssessment.EntityFramework.pdb
+C:\GitHub\DevTest\DevAssessment.EntityFramework\obj\Debug\DevAssessment.EntityFramework.csprojResolveAssemblyReference.cache
+C:\GitHub\DevTest\DevAssessment.EntityFramework\obj\Debug\DevAssessment.EntityFramework.csproj.CoreCompileInputs.cache

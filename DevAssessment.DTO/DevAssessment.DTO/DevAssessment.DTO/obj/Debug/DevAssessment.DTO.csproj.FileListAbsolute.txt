@@ -3,3 +3,5 @@ C:\Reference Projects\Dev Assessment\DevAssessment.DTO\DevAssessment.DTO\DevAsse
 C:\Reference Projects\Dev Assessment\DevAssessment.DTO\DevAssessment.DTO\DevAssessment.DTO\obj\Debug\DevAssessment.DTO.csproj.CoreCompileInputs.cache
 C:\Reference Projects\Dev Assessment\DevAssessment.DTO\DevAssessment.DTO\DevAssessment.DTO\obj\Debug\DevAssessment.DTO.dll
 C:\Reference Projects\Dev Assessment\DevAssessment.DTO\DevAssessment.DTO\DevAssessment.DTO\obj\Debug\DevAssessment.DTO.pdb
+C:\GitHub\DevTest\DevAssessment.DTO\DevAssessment.DTO\DevAssessment.DTO\obj\Debug\DevAssessment.DTO.csprojResolveAssemblyReference.cache
+C:\GitHub\DevTest\DevAssessment.DTO\DevAssessment.DTO\DevAssessment.DTO\obj\Debug\DevAssessment.DTO.csproj.CoreCompileInputs.cache

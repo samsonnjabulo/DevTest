@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevAssessment.DTO", "..\..\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevAssessment.EntityFramework", "..\..\DevAssessment.EntityFramework\DevAssessment.EntityFramework.csproj", "{6DD3896A-7C5B-4D04-9D7E-F5FDFD873F3A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevAssessment.Service", "DevAssessment.Service\DevAssessment.Service.csproj", "{579760B3-B23F-45FF-84E5-D9AA0C4C9A5F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevAssessment.Service", "..\..\DevAssessment.Service\DevAssessment.Service.csproj", "{579760B3-B23F-45FF-84E5-D9AA0C4C9A5F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

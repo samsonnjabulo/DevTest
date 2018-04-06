@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Results;
 
 namespace DevAssessmentApplication.Controllers
 {
@@ -24,9 +25,9 @@ namespace DevAssessmentApplication.Controllers
         }
 
         // GET api/values/5
-        public DepartmentDTO Get(int id)
+        public HttpResponseMessage Get(int id)
         {
-            return departmentService.GetDepartmentByID(id);
+            return Request.CreateResponse(HttpStatusCode.OK, departmentService.GetDepartmentByID(id));           
             
         }
 

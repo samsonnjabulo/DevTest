@@ -6,16 +6,20 @@ using DevAssessment.DTO;
 
 namespace DevAssessment.Core.Mapper
 {
-    internal static class DtoMapping
+    public static class DtoMapping
     {
+        public static bool isInitialize { get; set; }
         public static void Map()
         {
-            AutoMapper.Mapper.Initialize(
-                config =>
-                {
-                    config.CreateMap<Department, DepartmentDTO>().ReverseMap();
-                 
-                });
+            if (!isInitialize)
+            {
+                AutoMapper.Mapper.Initialize(
+                    config =>
+                    {
+                        config.CreateMap<Department, DepartmentDTO>().ReverseMap();
+                    });
+                isInitialize = true;
+            }
             
 
         }

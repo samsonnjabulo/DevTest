@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="DevAssessmentDBModelStoreContainer" CdmEntityContainer="DevAssessmentDBEntities">
+  <EntityContainerMapping StorageEntityContainer="DevAssessmentDBModelStoreContainer" CdmEntityContainer="Entities">
     <EntitySetMapping Name="ContactPreferences">
       <EntityTypeMapping TypeName="DevAssessmentDBModel.ContactPreference">
         <MappingFragment StoreEntitySet="ContactPreference">
@@ -28,7 +28,6 @@
     <EntitySetMapping Name="Students">
       <EntityTypeMapping TypeName="DevAssessmentDBModel.Student">
         <MappingFragment StoreEntitySet="Student">
-          <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
           <ScalarProperty Name="IDNumber" ColumnName="IDNumber" />
           <ScalarProperty Name="FullName" ColumnName="FullName" />
           <ScalarProperty Name="Surname" ColumnName="Surname" />
@@ -37,17 +36,7 @@
           <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
           <ScalarProperty Name="ContactPreference" ColumnName="ContactPreference" />
           <ScalarProperty Name="PhotoPath" ColumnName="PhotoPath" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="sysdiagrams">
-      <EntityTypeMapping TypeName="DevAssessmentDBModel.sysdiagram">
-        <MappingFragment StoreEntitySet="sysdiagrams">
-          <ScalarProperty Name="definition" ColumnName="definition" />
-          <ScalarProperty Name="version" ColumnName="version" />
-          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
