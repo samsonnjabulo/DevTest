@@ -5,17 +5,17 @@ namespace DevAssessmentApplication.Controllers
 {
     public class DepartmentController : ApiController
     {
-        private readonly IDepartmentService departmentService;
+        private readonly IDepartmentService _departmentService;
 
         public DepartmentController()
         {
-            departmentService = new DepartmentService();
+            _departmentService = new DepartmentService();
         }
       
         [HttpGet]
         public IHttpActionResult GetAllDepartments()
         {
-            var results =departmentService.GetAllDepartment();
+            var results =_departmentService.GetAllDepartment();
             if (results != null)
             {
                 return Ok(results);
@@ -28,7 +28,7 @@ namespace DevAssessmentApplication.Controllers
         //[HttpGet]
         //public IHttpActionResult GetDepartment(int id)
         //{
-        //    return Ok(departmentService.GetDepartmentByID(id));
+        //    return Ok(_departmentService.GetDepartmentByID(id));
         //}
 
 
