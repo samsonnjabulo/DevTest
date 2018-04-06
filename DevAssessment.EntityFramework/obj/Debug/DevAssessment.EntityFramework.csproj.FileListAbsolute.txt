@@ -8,3 +8,14 @@ C:\Reference Projects\Dev Assessment\DevAssessment.EntityFramework\obj\Debug\Dev
 C:\Reference Projects\Dev Assessment\DevAssessment.EntityFramework\obj\Debug\DevAssessment.EntityFramework.pdb
 C:\GitHub\DevTest\DevAssessment.EntityFramework\obj\Debug\DevAssessment.EntityFramework.csprojResolveAssemblyReference.cache
 C:\GitHub\DevTest\DevAssessment.EntityFramework\obj\Debug\DevAssessment.EntityFramework.csproj.CoreCompileInputs.cache
+C:\GitHub\DevTest\DevAssessment.EntityFramework\bin\Debug\DevAssessment.EntityFramework.dll.config
+C:\GitHub\DevTest\DevAssessment.EntityFramework\bin\Debug\DevAssessment.EntityFramework.dll
+C:\GitHub\DevTest\DevAssessment.EntityFramework\bin\Debug\DevAssessment.EntityFramework.pdb
+C:\GitHub\DevTest\DevAssessment.EntityFramework\bin\Debug\EntityFramework.dll
+C:\GitHub\DevTest\DevAssessment.EntityFramework\bin\Debug\EntityFramework.SqlServerCompact.dll
+C:\GitHub\DevTest\DevAssessment.EntityFramework\bin\Debug\Newtonsoft.Json.dll
+C:\GitHub\DevTest\DevAssessment.EntityFramework\bin\Debug\System.Data.SqlServerCe.dll
+C:\GitHub\DevTest\DevAssessment.EntityFramework\bin\Debug\EntityFramework.xml
+C:\GitHub\DevTest\DevAssessment.EntityFramework\bin\Debug\EntityFramework.SqlServerCompact.xml
+C:\GitHub\DevTest\DevAssessment.EntityFramework\obj\Debug\DevAssessment.EntityFramework.dll
+C:\GitHub\DevTest\DevAssessment.EntityFramework\obj\Debug\DevAssessment.EntityFramework.pdb
