@@ -11,7 +11,7 @@ export class StudentService {
   constructor( public _http:Http) { }
 
   getStudentDetails():Observable<Student>{   
-    const url = environment.baseUrl+'/Siebel/DevTestMethod';
+    const url = environment.baseUrl+'/Department';
     return this._http.get(url)
     .map((response: Response)=><Student>response.json())
    }

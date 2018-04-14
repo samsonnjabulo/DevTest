@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import{Student} from '../models/student.model';
 import{StudentService} from '../student/student.service';
-import { DepartmentService } from '../department/department.service';
+
 
 @Component({
   templateUrl: './student.component.html',
@@ -9,7 +9,6 @@ import { DepartmentService } from '../department/department.service';
 })
 export class StudentComponent implements OnInit {
 StudentData:any;
-DepartmentData:any 
 students:Student[] = [{
   id: 1,
   name :"Nkanyiso",
@@ -37,15 +36,11 @@ students:Student[] = [{
 },
 ]
 
-  constructor( public _student:StudentService , public _dep:DepartmentService) { }
+  constructor( public _student:StudentService ) { }
 
   ngOnInit() {
      this._student.getStudentDetails().subscribe((posts)=>
     this.StudentData = posts)
-
-
-    this._dep.getDepartment().subscribe((posts)=>
-    this.DepartmentData = posts)
   }
   
   getStudentByStudentNumber(){
